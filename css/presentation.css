@@ -34,3 +34,8 @@ p.smallest {
     text-align: right;
     padding-right: 2em;
 }
+
+ul.nobutton li,
+li.nobutton {
+    list-style: none;
+}

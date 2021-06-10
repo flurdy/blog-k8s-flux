@@ -1,27 +1,56 @@
-<p align="center">
-  <a href="https://revealjs.com">
-  <img src="https://hakim-static.s3.amazonaws.com/reveal-js/logo/v1/reveal-black-text.svg" alt="reveal.js" width="450">
-  </a>
-  <br><br>
-  <a href="https://github.com/hakimel/reveal.js/actions"><img src="https://github.com/hakimel/reveal.js/workflows/tests/badge.svg"></a>
-  <a href="https://slides.com/"><img src="https://s3.amazonaws.com/static.slid.es/images/slides-github-banner-320x40.png?1" alt="Slides" width="160" height="20"></a>
-</p>
 
-reveal.js is an open source HTML presentation framework. It enables anyone with a web browser to create fully featured and beautiful presentations for free. [Check out the live demo](https://revealjs.com/).
+# Blog on K8s with Flux
 
-The framework comes with a broad range of features including [nested slides](https://revealjs.com/vertical-slides/), [Markdown support](https://revealjs.com/markdown/), [Auto-Animate](https://revealjs.com/auto-animate/), [PDF export](https://revealjs.com/pdf-export/), [speaker notes](https://revealjs.com/speaker-view/), [LaTeX support](https://revealjs.com/math/), [syntax highlighted code](https://revealjs.com/code/) and much more.
 
-<h1>
-  <a href="https://revealjs.com/installation" style="font-size: 3em;">Get Started</a>
-</h1>
+* Host your own blog
+* on Kubernetes
+* using gitops with Flux
 
-## Documentation
-The full reveal.js documentation is available at [revealjs.com](https://revealjs.com).
+## Author
 
-## Online Editor
-Want to create your presentation using a visual editor? Try the official reveal.js presentation platform for free at [Slides.com](https://slides.com). It's made by the same people behind reveal.js.
+* Ivar Abrahamsen
+  * flurdy.com
+  * twitter.com/flurdy
+
+### Presentation
+
+[flurdy.github.io/blog-k8s-flux/](https://flurdy.github.io/blog-k8s-flux/)
+
+#### Presentation source
+
+[github.com/flurdy/blog-k8s-flux](https://github.com/flurdy/blog-k8s-flux)
+
+### Build
+
+Build Node app if needed:
+
+`docker build -t flurdy/blog-k8s-flux .`
+
+### Run
+
+Either as a static web pages
+
+`open index.html`
+
+Or as a Node app with speakers notes and timers.
+This uses docker-compose to run images build above.
+
+`docker-compose up`
+
+Press `s` to open *speaker's view*
+
+### Presentation software
+
+[reveal.js](https://revealjs.com)
+
 
 ## License
+
+Creative Commons Attribution 4.0 International License
+
+Copyright (C) 2021 Ivar Abrahamsen https://flurdy.com
+
+### reveal.js
 
 MIT licensed
 
