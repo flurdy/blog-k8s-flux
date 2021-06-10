@@ -17,17 +17,43 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section data-transition="" data-background="rgb(33, 44, 33)">
+				<section data-auto-animate data-background="rgb(33, 44, 33)">
 
 					<h2>Blog on K8s with Flux</h2>
 
-					<p class="rightly"><a href="https://twitter.com/flurdy">@flurdy</a></p>
+					<p class="righty smaller"><a href="https://twitter.com/flurdy">@flurdy</a></p>
 
 				</section>
 
-				<section data-transition="convex" data-background="rgb(33, 44, 33)">
+				<section data-auto-animate data-background="rgb(33, 44, 33)">
 
-					<h2></h2>
+					<h2 class="smallest">Blog on K8s with Flux</h2>
+
+					<ul>
+						<li class="smaller">
+							<a href="https://flurdy.github.io/blog-k8s-flux">flurdy.github.io/blog-k8s-flux</a>
+							<ul>
+								<li><a href="https://github.com/flurdyblog-k8s-flux">github.com/flurdy/blog-k8s-flux</a></li>
+							</ul>
+							<br/>
+						</li>
+
+						<li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
+
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Presentation</li>
+							<li>Presentation source</li>
+							<li>Clone Lemmings</li>
+						</ul>
+					</aside>
+
+				</section>
+				<section data-auto-animate data-background="rgb(33, 44, 33)">
+
+					<h2 class="smallest">Blog on K8s with Flux</h2>
 
 					<ul>
 						<li>
@@ -37,13 +63,7 @@
 								<li><a href="https://flurdy.com">flurdy.com</a></li>
 							</ul>
 						</li>
-						<li class="smaller">
-							<a href="https://flurdy.github.io/blog-k8s-flux">flurdy.github.io/blog-k8s-flux</a>
-							<ul>
-								<li><a href="https://github.com/flurdyblog-k8s-flux">github.com/flurdy/blog-k8s-flux</a></li>
-							</ul>
-						</li>
-						<li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
+
 					</ul>
 
 					<aside class="notes">
@@ -54,15 +74,17 @@
 
 				</section>
 
-				<section data-transition="" data-background="rgb(33, 44, 33)">
+				<section data-auto-animate data-background="rgb(33, 44, 33)">
 
-					<p class="fragment">Host your own blog</p>
-					<p class="fragment">on Kubernetes</p>
-					<p class="fragment">using gitops with Flux</p>
+					<h2 class="smallest fragment fade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
+
+					<p class="fragment" data-fragment-index="1">Host your own blog</p>
+					<p class="fragment" data-fragment-index="2">on Kubernetes</p>
+					<p class="fragment" data-fragment-index="3">using gitops with Flux</p>
 
 					<aside class="notes">
 						<ul>
-							<li></li>
+							<li>Flux by Weaveworks</li>
 						</ul>
 					</aside>
 
@@ -81,6 +103,8 @@
 
 					<aside class="notes">
 						<ul>
+							<li>Was going to just rehash these</li>
+							<li>But they were too outdated</li>
 							<li>Outdated Jekyll</li>
 							<li>Ruby gems</li>
 							<li>Not all gitops</li>
@@ -90,7 +114,7 @@
 
 				</section>
 
-				<section data-transition="convex" data-background="rgb(33, 44, 33)">
+				<section data-transition="convex" data-background="rgb(88, 33, 55)">
 
 					<h2></h2>
 					<ul>
@@ -164,6 +188,7 @@
 				plugins: [ RevealHighlight, RevealNotes ],
 				slideNumber: true,
 				showSlideNumber: "speaker",
+				totalTime: 1800,
 				transition: "convex"
 			});
 		</script>

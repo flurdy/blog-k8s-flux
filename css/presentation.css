@@ -1,13 +1,20 @@
 li {
     font-size: 0.8em;
 }
-ul.smaller > li, li.smaller, p.saller {
+ul.smaller > li,
+li.smaller,
+p.smaller {
     font-size: 0.7em;
+}
+h2.smallest {
+    font-size: 90%;
 }
 ul.larger li, li.larger {
     font-size: 1em;
 }
-ul.smallest > li, li.smallest, p.smallest {
+ul.smallest > li,
+li.smallest,
+p.smallest {
     font-size: 0.5em;
 }
 .reveal .thumbnails img.half {
