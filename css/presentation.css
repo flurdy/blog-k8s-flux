@@ -6,6 +6,9 @@ li.smaller,
 p.smaller {
     font-size: 0.7em;
 }
+h2.smaller {
+    font-size: 95%;
+}
 h2.smallest {
     font-size: 90%;
 }
@@ -38,4 +41,11 @@ p.smallest {
 ul.nobutton li,
 li.nobutton {
     list-style: none;
+}
+code.wider {
+    min-width: 20em;
+    padding: 5em;
+}
+pre.wider {
+    width: 100%;
 }

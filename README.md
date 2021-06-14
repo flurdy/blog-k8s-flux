@@ -1,16 +1,19 @@
 
 # Blog on K8s with Flux
 
-
-* Host your own blog
-* on Kubernetes
-* using gitops with Flux
+Running your own blog,
+on your own Kubernetes cluster,
+managed with Flux, a gitops tool.
 
 ## Author
 
 * Ivar Abrahamsen
   * flurdy.com
   * twitter.com/flurdy
+
+## Date
+
+* Presented in June 2021.
 
 ### Presentation
 
@@ -20,26 +23,41 @@
 
 [github.com/flurdy/blog-k8s-flux](https://github.com/flurdy/blog-k8s-flux)
 
-### Build
+## Run
 
-Build Node app if needed:
+### Static page
 
-`docker build -t flurdy/blog-k8s-flux .`
+As a static web page
 
-### Run
+```
+open index.html
+```
 
-Either as a static web pages
+Note, no timers or notes are available in this case.
 
-`open index.html`
+### Node app
 
-Or as a Node app with speakers notes and timers.
-This uses docker-compose to run images build above.
+As a local Node.js app
 
-`docker-compose up`
+```
+npm install
+npm start -- --port=8010
+```
+
+With speaker notes and timers.
 
 Press `s` to open *speaker's view*
 
-### Presentation software
+### Node Docker
+
+Build and run Node app in Docker:
+
+```
+docker build -t flurdy/blog-k8s-flux .
+docker compose up
+```
+
+## Presentation software
 
 [reveal.js](https://revealjs.com)
 

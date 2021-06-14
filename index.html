@@ -9,10 +9,9 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css">
-
-		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 		<link rel="stylesheet" href="css/presentation.css">
+		<script src="plugin/highlight/highlight.js"></script>
 	<body>
 		<div class="reveal">
 			<div class="slides">
@@ -38,7 +37,7 @@
 							<br/>
 						</li>
 
-						<li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
+						<!-- <li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li> -->
 
 					</ul>
 
@@ -76,7 +75,7 @@
 
 				<section data-auto-animate data-background="rgb(33, 44, 33)">
 
-					<h2 class="smallest fragment fade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
+					<h2 class="smallest afragment afade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
 
 					<p class="fragment" data-fragment-index="1">Host your own blog</p>
 					<p class="fragment" data-fragment-index="2">on Kubernetes</p>
@@ -119,14 +118,56 @@
 					<h2>Blog</h2>
 
 					<ul>
-						<li>Full control</li>
-						<li>Not hosted by 3rd party</li>
-						<li>Simple publish pipeline</li>
+						<li class="fragment">
+							Full control
+							<ul>
+								<li>
+									Own your content
+								</li>
+								<li>Theme as you like</li>
+								<li>Not hosted by 3rd party
+									<ul>
+										<li class="fragment">
+											<strike>Medium</strike>,
+											<strike>Wordpress.org</strike>,
+											<strike>Ghost</strike>,
+											<strike>Blogger</strike>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						<li class="fragment">Simple publish pipeline</li>
 					</ul>
 
 					<aside class="notes">
 						<ul>
-							<li>Not Blogger, Medium, etc</li>
+							<li>Own your content</li>
+							<li>Not Blogger</li>
+							<li>Not Medium</li>
+							<li>No hosted Wordpress</li>
+							<li>Not Ghost</li>
+						</ul>
+					</aside>
+
+				</section>
+				<section data-auto-animate data-transition="convex" data-background="rgb(88, 33, 55)">
+
+					<h2 class="smallest">Blog</h2>
+
+					<h2 class="smallest">Alternatives</h2>
+
+					<ul class="fragment">
+						<li>Hugo</li>
+						<li>Gatsby</li>
+						<li>Wordpress</li>
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>A reason I have not tried them enough</li>
+							<li>Hugo: Go - Fast - Broken templating for me</li>
+							<li>Gatsby: Node.js -Never tried properly</li>
+							<li>Wordpress: PHP-Security poor</li>
 						</ul>
 					</aside>
 
@@ -134,9 +175,9 @@
 
 				<section data-auto-animate data-background="rgb(88, 33, 55)">
 
-					<h2 class="">Blog</h2>
+					<h2 class="smallest">Blog</h2>
 
-					<h2 class="smallest fragment fade-up">Jekyll</h2>
+					<h2 class="fragment fade-up">Jekyll</h2>
 
 					<ul class="fragment fade-up">
 						<li class="">
@@ -146,10 +187,16 @@
 							Ruby
 						</li>
 						<li class="">
-							Templates
+							Easy to use templates
+						</li>
+						<li class="">
+							Lots of themes
 						</li>
 						<li class="">
 							Huge market share
+						</li>
+						<li class="">
+							Slow generation
 						</li>
 						<li class="fragment fade-up smaller">
 							<a href="https://jekyllrb.com/">jekyllrb.com</a>
@@ -159,10 +206,55 @@
 
 					<aside class="notes">
 						<ul>
-							<li>Generates static pages</li>
-							<li>HTML pages</li>
+							<li>Generates static HTML pages</li>
 							<li>Written in Ruby</li>
-							<li>A bit slow</li>
+							<li>A bit slow in generation</li>
+							<li>Static pages are fast</li>
+							<li>Lots of free and paid for themes</li>
+							<li>Maybe not the latest and shiniest</li>
+						</ul>
+					</aside>
+
+				</section>
+
+				<section data-auto-animate data-background="rgb(88, 33, 55)">
+
+					<h2 class="smallest">Jekyll</h2>
+
+					<h4>Install</h4>
+
+					<p class="fragment fade-in-then-out">Ruby Gem</p>
+					<p class="fragment fade-up">Ruby via Docker
+						<ul>
+							<li class="fragment fade-left">
+
+								<pre class="wider"><code data-trim data-noescape class="language-shell">
+									docker pull jekyll/jekyll:4.2.0
+								</code></pre>
+							</li>
+						</ul>
+
+					</p>
+
+					<aside class="notes">
+						<ul>
+							<li>Polluting local system</li>
+						</ul>
+					</aside>
+
+				</section>
+
+				<section data-auto-animate data-background="rgb(88, 33, 55)">
+
+					<h2 class="smallest">Jekyll</h2>
+
+					<ul>
+						<li class="fragment fade-up">Create</li>
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li></li>
 						</ul>
 					</aside>
 
