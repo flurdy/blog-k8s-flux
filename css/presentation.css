@@ -43,9 +43,13 @@ li.nobutton {
     list-style: none;
 }
 code.wider {
-    min-width: 20em;
-    padding: 5em;
+    /* min-width: 20em; */
+    width: 110%;
+    /* padding: 5em; */
 }
 pre.wider {
     width: 100%;
+}
+em.custom {
+    color: #f99;
 }
