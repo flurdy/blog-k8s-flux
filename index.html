@@ -24,116 +24,119 @@
 
 				</section>
 
-				<section data-auto-animate data-background="rgb(33, 44, 33)">
+				<section data-background="rgb(33, 44, 33)">
+					<section data-auto-animate>
 
-					<h2 class="smallest">Blog on K8s with Flux</h2>
+						<h2 class="smallest">Blog on K8s with Flux</h2>
 
-					<ul>
-						<li class="smaller">
-							<a href="https://flurdy.github.io/blog-k8s-flux">flurdy.github.io/blog-k8s-flux</a>
+						<ul>
+							<li class="smaller">
+								<a href="https://flurdy.github.io/blog-k8s-flux">flurdy.github.io/blog-k8s-flux</a>
+								<ul>
+									<li><a href="https://github.com/flurdyblog-k8s-flux">github.com/flurdy/blog-k8s-flux</a></li>
+								</ul>
+								<br/>
+							</li>
+
+							<!-- <li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li> -->
+
+						</ul>
+
+						<aside class="notes">
 							<ul>
-								<li><a href="https://github.com/flurdyblog-k8s-flux">github.com/flurdy/blog-k8s-flux</a></li>
+								<li>Presentation</li>
+								<li>Presentation source</li>
+								<li>Clone Lemmings</li>
 							</ul>
-							<br/>
-						</li>
+						</aside>
 
-						<!-- <li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li> -->
+					</section>
 
-					</ul>
+					<section data-auto-animate>
 
-					<aside class="notes">
+						<h2 class="smallest">Blog on K8s with Flux</h2>
+
 						<ul>
-							<li>Presentation</li>
-							<li>Presentation source</li>
-							<li>Clone Lemmings</li>
+							<li>
+								Ivar Abrahamsen
+								<ul>
+									<li><a href="https://twitter.com/flurdy">@flurdy</a></li>
+									<li><a href="https://flurdy.com">flurdy.com</a></li>
+								</ul>
+							</li>
+
 						</ul>
-					</aside>
 
-				</section>
-				<section data-auto-animate data-background="rgb(33, 44, 33)">
-
-					<h2 class="smallest">Blog on K8s with Flux</h2>
-
-					<ul>
-						<li>
-							Ivar Abrahamsen
+						<aside class="notes">
 							<ul>
-								<li><a href="https://twitter.com/flurdy">@flurdy</a></li>
-								<li><a href="https://flurdy.com">flurdy.com</a></li>
+								<li></li>
 							</ul>
-						</li>
+						</aside>
 
-					</ul>
+					</section>
 
-					<aside class="notes">
+					<section data-auto-animate>
+
+						<h2 class="smallest afragment afade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
+
+						<p class="fragment" data-fragment-index="1">Host your own blog</p>
+						<p class="fragment" data-fragment-index="2">on Kubernetes</p>
+						<p class="fragment" data-fragment-index="3">using gitops with Flux</p>
+
+						<aside class="notes">
+							<ul>
+								<li>Flux by Weaveworks</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto->
+
+						<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
+
+						<h4>Contents</h4>
+
+						<ol>
+							<li>Introduction</li>
+							<li>Blog</li>
+							<li>CI build</li>
+							<li>Kubernetes</li>
+							<li>Flux Gitops</li>
+						</ol>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate data-transition="convex">
+
+						<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
+
+						<h4>Prior Art</h4>
+
 						<ul>
-							<li></li>
+							<li class="smaller"><a href="https://flurdy.com/docs/jekyll/">flurdy.com/docs/jekyll/</a></li>
+							<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-101.html">flurdy.com/docs/kubernetes/kubernetes-101.html</a></li>
+							<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html">flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html</a></li>
+							<li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
 						</ul>
-					</aside>
 
-				</section>
+						<aside class="notes">
+							<ul>
+								<li>Was going to just rehash these</li>
+								<li>But they were too outdated</li>
+								<li>Outdated Jekyll</li>
+								<li>Ruby gems</li>
+								<li>Not all gitops</li>
+								<li>Flux 1.x</li>
+							</ul>
+						</aside>
 
-				<section data-auto-animate data-background="rgb(33, 44, 33)">
-
-					<h2 class="smallest afragment afade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
-
-					<p class="fragment" data-fragment-index="1">Host your own blog</p>
-					<p class="fragment" data-fragment-index="2">on Kubernetes</p>
-					<p class="fragment" data-fragment-index="3">using gitops with Flux</p>
-
-					<aside class="notes">
-						<ul>
-							<li>Flux by Weaveworks</li>
-						</ul>
-					</aside>
-
-				</section>
-
-				<section data-auto-animate data-background="rgb(33, 44, 33)">
-
-					<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
-
-					<h4>Contents</h4>
-
-					<ol>
-						<li>Introduction</li>
-						<li>Blog</li>
-						<li>CI build</li>
-						<li>Kubernetes</li>
-						<li>Flux Gitops</li>
-					</ol>
-
-					<aside class="notes">
-						<ul>
-						</ul>
-					</aside>
-
-				</section>
-
-				<section data-auto-animate data-transition="convex" data-background="rgb(33, 44, 33)">
-
-					<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
-
-					<h4>Prior Art</h4>
-
-					<ul>
-						<li class="smaller"><a href="https://flurdy.com/docs/jekyll/">flurdy.com/docs/jekyll/</a></li>
-						<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-101.html">flurdy.com/docs/kubernetes/kubernetes-101.html</a></li>
-						<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html">flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html</a></li>
-						<li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
-					</ul>
-
-					<aside class="notes">
-						<ul>
-							<li>Was going to just rehash these</li>
-							<li>But they were too outdated</li>
-							<li>Outdated Jekyll</li>
-							<li>Ruby gems</li>
-							<li>Not all gitops</li>
-							<li>Flux 1.x</li>
-						</ul>
-					</aside>
-
+					</section>
 				</section>
 
 				<section data-transition="convex" data-background="rgb(88, 33, 55)">
@@ -374,7 +377,7 @@
 
 						<h4 class="">Docker Compose</h4>
 
-						<pre class=""><code data-trim data-noescape class="">
+						<pre class=""><code data-trim data-noescape class="editor language-yaml">
 							version: '3'
 
 							services:
@@ -496,7 +499,7 @@
 
 				</section> -->
 
-				<section data-transition="convex" data-background="rgb(33, 44, 55)">
+				<section data-transition="convex" data-background="rgb(55, 44, 33)">
 					<section data-auto-animate data-transition="convex" >
 
 						<h2>CI Build</h2>
@@ -508,14 +511,38 @@
 						</aside>
 
 					</section>
+
 					<section data-auto-animate>
 
 						<h2>CI Build</h2>
 
-						<h4>Alternative</h4>
+						<ul>
+							<li class="fragment">Generate static blog pages</li>
+							<li class="fragment">Package as Docker image</li>
+							<li class="fragment">Upload to container registery</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2>CI Build</h2>
+
+						<h4>Alternatives</h4>
 
 						<ul>
-							<li><a href="">Github actions</a></li>
+							<li class="fragment">
+								<a href="https://github.com/features/actions">Github actions</a>
+								<p class="smaller">
+									<a h ref="https://github.com/features/actions">github.com/features/actions</a>
+								</p>
+							</li>
 							<!-- <li><a href="">Google Cloud build</a></li> -->
 						</ul>
 
@@ -526,15 +553,288 @@
 						</aside>
 
 					</section>
+
 					<section data-auto-animate>
 
 						<h2 class="smallest">CI Build</h2>
 
 						<h2>CircleCI</h2>
+						<p class="smaller"><a href="https://circleci.com/">circleci.com</a></p>
+
+						<ul class="fragment">
+							<li>Free</li>
+							<li>Integrates with your Github repositories</li>
+							<li>Can build private projects</li>
+							<li>Pipelines</li>
+							<li>Configuration is local so can be in version control</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>Handy build numbering Docker images</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">CircleCI</h2>
+
+						<h4 class="">Set up project</h4>
+
+						<ol>
+							<li>Log in to circleci.com with Github</li>
+							<li class="fragment">On the dashboard, click on Projects on the left</li>
+							<li class="fragment">Find our blog repository, and click on <em>"Set up project"</em></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ol>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">CircleCI</h2>
+
+						<h4 class="">Create configuration</h4>
+
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-bash">
+								mkdir .circleci
+								curl -L -O .circleci/config.yml \
+								  https://raw.githubusercontent.com/flurdy/blog/master/.circleci/config.yml
+							</code></pre>
+						</div>
+
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-yaml editor"
+								data-line-numbers="2|3|4-5|7|9-11|13-16">
+								...
+								jobs:
+								  build:
+								    docker:
+									  - image: circleci/ruby:2.6.0-node
+								...
+								    steps:
+								...
+								      - run:
+								          name: Jekyll build
+								          command: bundle exec jekyll build
+								...
+								    - persist_to_workspace:
+								        root: ./
+								        paths:
+								          - _site
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>This can be tidied up more</li>
+								<li>But it works</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">CircleCI</h2>
+
+						<h4 class="smaller">Create configuration</h4>
+
+						<p class="smaller">Part 2</p>
+
+						<div class="">
+							<pre class=""><code data-trim data-noescape class="language-yaml editor"
+								data-line-numbers="2|3-4|5-6|10-12">
+								...
+								  build-image:
+								    docker:
+									  - image: circleci/buildpack-deps:stretch
+								    environment:
+									    IMAGE_NAME: quay.io/<em>yourusername</em>/<em>myblog</em>
+								...
+								    steps:
+								...
+								      - run:
+								          name: Build Docker image
+								          command: docker build -t $IMAGE_NAME:latest .
+								...
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>Change image name</li>
+								<li>This can be an environment variable</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">CircleCI</h2>
+
+						<h4 class="smaller">Create configuration</h4>
+
+						<p class="smaller">Part 3</p>
+
+						<div class="">
+							<pre class=""><code data-trim data-noescape class="language-yaml editor"
+								data-line-numbers="2|7|8|9-10|11">
+                              ...
+                                publish-image:
+                              ...
+                               - run:
+                                  name: Upload to registry
+                                  command: |
+                                    echo "$DOCKER_PASSWORD" | docker login quay.io -u "$DOCKER_LOGIN" --password-stdin
+                                    docker push $IMAGE_NAME:latest
+                                    IMAGE_TAG="1.0.${CIRCLE_BUILD_NUM}"
+                                    docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
+                                    docker push $IMAGE_NAME:$IMAGE_TAG
+                             ...
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>We have not set up the container yet...</li>
+								<li>DOCKER_PASSWORD environment variable</li>
+								<li>CIRCLE_BUILD_NUM is really useful</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">CircleCI</h2>
+
+						<h4 class="smaller">Create configuration</h4>
+
+						<p class="smaller">Part 4</p>
+
+						<div class="">
+							<pre class=""><code data-trim data-noescape class="language-yaml editor"
+								data-line-numbers="2|5|6-9|10-12|14-16">
+								...
+								workflows:
+								  version: 2
+								  build-master:
+								    - jobs:
+								      - build:
+								        filters:
+								          branches:
+								            only: master
+								      - build-image:
+								        requires:
+								          - build
+								...
+								      - publish-image:
+								        requires:
+								          - build-image
+								...
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">CircleCI</h2>
 
 						<ul>
-							<li><a href="">Github actions</a></li>
-							<!-- <li><a href="">Google Cloud build</a></li> -->
+							<li class="fragment">Typos are your enemy</li>
+							<li class="fragment">CircleCI CLI as a linter
+								<ul>
+									<li class="smaller">
+										<a href="https://circleci.com/docs/2.0/local-cli/">circleci.com/docs/2.0/local-cli/</a>
+									</li>
+								</ul>
+							</li>
+							<li class="fragment">
+								<pre class=""><code data-trim data-noescape class="language-bash">
+									circleci config validate
+								</code></pre>
+							</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+				</section>
+
+				<section data-transition="convex" data-background="rgb(66, 66, 22)">
+					<section data-auto-animate data-transition="convex">
+
+						<h2>Docker Container Registery</h2>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2>Docker Container Registery</h2>
+
+						<ul class="fragment">
+							<li>Free or cheap</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>Simple requirements</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Docker Container Registery</h2>
+
+						<h4>Alternatives</h4>
+
+						<ul class="fragment">
+						</ul>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+				</section>
+
+				<section data-transition="convex" data-background="rgb(33, 44, 55)">
+					<section data-auto-animate data-transition="convex">
+
+						<h2>Kubernetes</h2>
+						<ul>
+							<li></li>
 						</ul>
 
 						<aside class="notes">
@@ -546,34 +846,21 @@
 					</section>
 				</section>
 
-				<section data-transition="convex" data-background="rgb(33, 44, 33)">
+				<section data-transition="convex" data-background="rgb(33, 66, 33)">
+					<section data-auto-animate data-transition="convex">
 
-					<h2>Kubernetes</h2>
-					<ul>
-						<li></li>
-					</ul>
-
-					<aside class="notes">
+						<h2>Flux</h2>
 						<ul>
 							<li></li>
 						</ul>
-					</aside>
 
-				</section>
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
 
-				<section data-transition="convex" data-background="rgb(33, 44, 33)">
-
-					<h2>Flux</h2>
-					<ul>
-						<li></li>
-					</ul>
-
-					<aside class="notes">
-						<ul>
-							<li></li>
-						</ul>
-					</aside>
-
+					</section>
 				</section>
 
 			</div>
