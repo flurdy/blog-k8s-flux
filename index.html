@@ -89,7 +89,30 @@
 
 				</section>
 
-				<section data-transition="convex" data-background="rgb(33, 44, 33)">
+				<section data-auto-animate data-background="rgb(33, 44, 33)">
+
+					<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
+
+					<h4>Contents</h4>
+
+					<ol>
+						<li>Introduction</li>
+						<li>Blog</li>
+						<li>CI build</li>
+						<li>Kubernetes</li>
+						<li>Flux Gitops</li>
+					</ol>
+
+					<aside class="notes">
+						<ul>
+						</ul>
+					</aside>
+
+				</section>
+
+				<section data-auto-animate data-transition="convex" data-background="rgb(33, 44, 33)">
+
+					<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
 
 					<h4>Prior Art</h4>
 
@@ -113,318 +136,414 @@
 
 				</section>
 
-				<section data-auto-animate data-transition="convex" data-background="rgb(88, 33, 55)">
+				<section data-transition="convex" data-background="rgb(88, 33, 55)">
+					<section data-auto-animate data-transition="convex">
 
-					<h2>Blog</h2>
+						<h2>Blog</h2>
 
-					<ul>
-						<li class="fragment">
-							Full control
+						<aside class="notes">
 							<ul>
-								<li>
-									Own your content
+							</ul>
+						</aside>
+
+					</section>
+					<section data-auto-animate>
+
+						<h2>Blog</h2>
+
+						<ul>
+							<li class="fragment">
+								Full control
+								<ul>
+									<li>
+										Own your content
+									</li>
+									<li>Theme as you like</li>
+									<li>Not hosted by 3rd party
+										<ul>
+											<li class="fragment">
+												<strike>Medium</strike>,
+												<strike>Wordpress.org</strike>,
+												<strike>Ghost</strike>,
+												<strike>Blogger</strike>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							<li class="fragment">Simple publish pipeline</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>Own your content</li>
+								<li>Not Blogger</li>
+								<li>Not Medium</li>
+								<li>No hosted Wordpress</li>
+								<li>Not Ghost</li>
+							</ul>
+						</aside>
+
+					</section>
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog</h2>
+
+						<h2 class="smallest">Alternatives</h2>
+
+						<ul class="fragment">
+							<li>Hugo</li>
+							<li>Gatsby</li>
+							<li>Wordpress</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>A reason I have not tried them enough</li>
+								<li>Hugo: Go - Fast - Broken templating for me</li>
+								<li>Gatsby: Node.js -Never tried properly</li>
+								<li>Wordpress: PHP-Security poor</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog</h2>
+
+						<h2 class="fragment fade-up">Jekyll</h2>
+
+						<p class="fragment fade-up smaller">
+							<a href="https://jekyllrb.com/">jekyllrb.com</a>
+						</p>
+						<ul class="fragment fade-up">
+							<li class="">
+								Static pages
+							</li>
+							<li class="">
+								Ruby
+							</li>
+							<li class="">
+								Easy to use templates
+							</li>
+							<li class="">
+								Lots of themes
+							</li>
+							<li class="">
+								Slow generation
+							</li>
+						</ul>
+
+
+						<aside class="notes">
+							<ul>
+								<li class="">
+									Huge market share
 								</li>
-								<li>Theme as you like</li>
-								<li>Not hosted by 3rd party
-									<ul>
-										<li class="fragment">
-											<strike>Medium</strike>,
-											<strike>Wordpress.org</strike>,
-											<strike>Ghost</strike>,
-											<strike>Blogger</strike>
-										</li>
-									</ul>
+								<li>Github pages</li>
+								<li>Generates static HTML pages</li>
+								<li>Written in Ruby</li>
+								<li>A bit slow in generation</li>
+								<li>Static pages are fast</li>
+								<li>Lots of free and paid for themes</li>
+								<li>Maybe not the latest and shiniest</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Jekyll</h2>
+
+						<h4>Install</h4>
+
+						<p class="fragment fade-in-then-out">Ruby Gem</p>
+						<p class="fragment fade-up">Ruby via Docker
+							<ul>
+								<li class="fragment fade-left">
+
+									<pre class=""><code data-trim data-noescape class="wider language-shell">
+										docker pull jekyll/jekyll:4.2.0
+									</code></pre>
 								</li>
 							</ul>
-						<li class="fragment">Simple publish pipeline</li>
-					</ul>
 
-					<aside class="notes">
-						<ul>
-							<li>Own your content</li>
-							<li>Not Blogger</li>
-							<li>Not Medium</li>
-							<li>No hosted Wordpress</li>
-							<li>Not Ghost</li>
-						</ul>
-					</aside>
+						</p>
 
-				</section>
-				<section data-auto-animate data-transition="convex" data-background="rgb(88, 33, 55)">
+						<aside class="notes">
+							<ul>
+								<li>Polluting local system</li>
+							</ul>
+						</aside>
 
-					<h2 class="smallest">Blog</h2>
+					</section>
 
-					<h2 class="smallest">Alternatives</h2>
+					<section data-auto-animate>
 
-					<ul class="fragment">
-						<li>Hugo</li>
-						<li>Gatsby</li>
-						<li>Wordpress</li>
-					</ul>
+						<h2 class="smallest">Jekyll</h2>
 
-					<aside class="notes">
-						<ul>
-							<li>A reason I have not tried them enough</li>
-							<li>Hugo: Go - Fast - Broken templating for me</li>
-							<li>Gatsby: Node.js -Never tried properly</li>
-							<li>Wordpress: PHP-Security poor</li>
-						</ul>
-					</aside>
+						<h4 class="">Create blog</h4>
+						<div class="fragment">
+							<p class="smaller">Create container</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								docker run --rm --volume="$PWD:/srv/jekyll" \
+								-it jekyll/jekyll:4.2.0 /bin/bash
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<!-- <p>Create blog </p> -->
+							<p class="smaller">(inside container)</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								jekyll new <em class="custom">myblog</em>
+								exit
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<p class="smaller">(outside container)</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								cd <em class="custom">myblog</em>
+								git init
+								git commit -am "Initial"
+							</code></pre>
+						</div>
 
-				</section>
+						<aside class="notes">
+							<ul>
+								<li>$PWD works in bash not in fish</li>
+								<li>Using bash inside container</li>
+								<li>myblog is whatever you decide</li>
+							</ul>
+						</aside>
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
+					</section>
 
-					<h2 class="smallest">Blog</h2>
+					<section data-auto-animate>
 
-					<h2 class="fragment fade-up">Jekyll</h2>
+						<h2 class="smallest">Jekyll</h2>
 
-					<ul class="fragment fade-up">
-						<li class="">
-							Static pages
-						</li>
-						<li class="">
-							Ruby
-						</li>
-						<li class="">
-							Easy to use templates
-						</li>
-						<li class="">
-							Lots of themes
-						</li>
-						<li class="">
-							Slow generation
-						</li>
-						<li class="fragment fade-up smaller">
-							<a href="https://jekyllrb.com/">jekyllrb.com</a>
-						</li>
-					</ul>
+						<p>Start Jekyll webserver</p>
+						<div class="fragment">
+							<p class="smaller">exposing port 4000</>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								docker run --rm --volume="$PWD:/srv/jekyll" \
+								-p 4000:4000 -it jekyll/jekyll:4.2.0 /bin/bash
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<p class="smaller">(inside container)</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								bundle exec jekyll bundler
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<p class="smaller">(outside container)</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								open http://localhost:4000
+							</code></pre>
+						</div>
 
+						<aside class="notes">
+							<ul>
+								<li>exposing port 4000</li>
+								<li>Using bash inside container</li>
+							</ul>
+						</aside>
 
-					<aside class="notes">
-						<ul>
-							<li class="">
-								Huge market share
-							</li>
-							<li>Github pages</li>
-							<li>Generates static HTML pages</li>
-							<li>Written in Ruby</li>
-							<li>A bit slow in generation</li>
-							<li>Static pages are fast</li>
-							<li>Lots of free and paid for themes</li>
-							<li>Maybe not the latest and shiniest</li>
-						</ul>
-					</aside>
+					</section>
 
-				</section>
+					<section data-auto-animate>
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
+						<h2 class="">Jekyll</h2>
 
-					<h2 class="smallest">Jekyll</h2>
+						<img src="img/jekyll-default.png"/>
 
-					<h4>Install</h4>
+						<aside class="notes">
+							<ul>
+								<li>Yay</li>
+								<li>Edit _config.yml</li>
+								<li>Yay</li>
+							</ul>
+						</aside>
 
-					<p class="fragment fade-in-then-out">Ruby Gem</p>
-					<p class="fragment fade-up">Ruby via Docker
-						<ul>
-							<li class="fragment fade-left">
+					</section>
 
-								<pre class=""><code data-trim data-noescape class="wider language-shell">
-									docker pull jekyll/jekyll:4.2.0
-								</code></pre>
-							</li>
-						</ul>
+					<section data-auto-animate>
 
-					</p>
+						<h2 class="smaller">Jekyll</h2>
 
-					<aside class="notes">
-						<ul>
-							<li>Polluting local system</li>
-						</ul>
-					</aside>
+						<h4 class="">Docker Compose</h4>
 
-				</section>
+						<pre class=""><code data-trim data-noescape class="">
+							version: '3'
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
-
-					<h2 class="smallest">Jekyll</h2>
-
-					<h4 class="">Create blog</h4>
-					<div class="fragment">
-						<p class="smaller">Create container</p>
-						<pre class=""><code data-trim data-noescape class="language-shell">
-							docker run --rm --volume="$PWD:/srv/jekyll" \
-							  -it jekyll/jekyll:4.2.0 /bin/bash
+							services:
+							jekyll:
+							image: jekyll/jekyll:4.2.0
+							container_name: <em class="custom">myblog</em>
+							environment:
+							- JEKYLL_ENV=docker
+							command: jekyll serve --force_polling --livereload --drafts
+							ports:
+							- 4000:4000
+							- 35729:35729
+							volumes:
+							- ./:/srv/jekyll
 						</code></pre>
-					</div>
-					<div class="fragment">
-						<!-- <p>Create blog </p> -->
-						<p class="smaller">(inside container)</p>
-						<pre class=""><code data-trim data-noescape class="language-shell">
-							jekyll new <em class="custom">myblog</em>
-							exit
+						<pre class=""><code data-trim data-noescape class="language-bash">
+							docker compose up
 						</code></pre>
-					</div>
-					<div class="fragment">
-						<p class="smaller">(outside container)</p>
-						<pre class=""><code data-trim data-noescape class="language-shell">
-							cd <em class="custom">myblog</em>
-							git init
-						</code></pre>
-					</div>
 
-					<aside class="notes">
+						<aside class="notes">
+							<ul>
+								<li>Need to reload if editing _config.yml or gemfile</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smaller">Jekyll</h2>
+
+						<h4 class="">Themes</h4>
+
 						<ul>
-							<li>$PWD works in bash not in fish</li>
-							<li>Using bash inside container</li>
-							<li>myblog is whatever you decide</li>
+							<li class="smallest"><a href="https://jekyllthemes.org">jekyllthemes.org</a></li>
+							<li class="smallest"><a href="https://jekyll-themes.com">jekyll-themes.com</a></li>
+							<li class="smallest"><a href="https://jekyllthemes.io">jekyllthemes.io</a></li>
+							<li class="smallest"><a href="https://github.com/jekyll/jekyll/wiki/Themes">github.com/jekyll/jekyll/wiki/Themes</a></li>
+							<li class="smallest"><a href="https://github.com/planetjekyll/awesome-jekyll-themes">github.com/planetjekyll/awesome-jekyll-themes</a></li>
+							<li class="smallest"><a href="https://talk.jekyllrb.com/t/jekyll-theme-showcase-share-your-jekyll-themes/">talk.jekyllrb.com/t/jekyll-theme-showcase-share-your-jekyll-themes/</a></li>
 						</ul>
-					</aside>
 
+
+						<aside class="notes">
+							<ul>
+								<li>A lot</li>
+								<li>Pick one</li>
+								<li>Paid or free</li>
+								<li>Some as Gems</li>
+								<li>Some as Jekyll plugins</li>
+								<li>Some as zip</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smaller">Jekyll</h2>
+
+
+						<h4 class="">Draft</h4>
+
+						<div class="">
+							<p class="smaller">(outside container)</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								touch -p _drafts/my-first-post.md
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-markdown editor">
+								## My first blog post
+
+								Hello everyone
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-markdown">
+								open http://localhost:4000/2021/05/18/my-first-post
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-bash">
+								git add _drafts/my-first-post.md
+								git commit -am "First post"
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>in your favourite editor</li>
+								<li>Should see the page generation trigger in Jekyll</li>
+							</ul>
+						</aside>
+
+					</section>
 				</section>
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
-
-					<h2 class="smallest">Jekyll</h2>
-
-					<p>Start Jekyll webserver</p>
-					<div class="fragment">
-						<p class="smaller">exposing port 4000</>
-						<pre class=""><code data-trim data-noescape class="language-shell">
-							docker run --rm --volume="$PWD:/srv/jekyll" \
-							  -p 4000:4000 -it jekyll/jekyll:4.2.0 /bin/bash
-						</code></pre>
-					</div>
-					<div class="fragment">
-						<p class="smaller">(inside container)</p>
-						<pre class=""><code data-trim data-noescape class="language-shell">
-							bundle exec jekyll bundler
-						</code></pre>
-					</div>
-					<div class="fragment">
-						<p class="smaller">(outside container)</p>
-						<pre class=""><code data-trim data-noescape class="language-shell">
-							open http://localhost:4000
-						</code></pre>
-					</div>
-
-					<aside class="notes">
-						<ul>
-							<li>exposing port 4000</li>
-							<li>Using bash inside container</li>
-						</ul>
-					</aside>
-
-				</section>
-
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
-
-					<h2 class="">Jekyll</h2>
-
-					<img src="img/jekyll-default.png"/>
-
-					<aside class="notes">
-						<ul>
-							<li>Yay</li>
-							<li>Edit _config.yml</li>
-							<li>Yay</li>
-						</ul>
-					</aside>
-
-				</section>
-
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
+				<!-- <section data-auto-animate data-background="rgb(88, 33, 55)">
 
 					<h2 class="smaller">Jekyll</h2>
 
-					<h4 class="">Docker Compose</h4>
+					<h4 class="">Publish</h4>
 
-					<pre class=""><code data-trim data-noescape class="">
-						version: '3'
-
-						services:
-						jekyll:
-						  image: jekyll/jekyll:4.2.0
-						  container_name: <em class="custom">myblog</em>
-						  environment:
-						  - JEKYLL_ENV=docker
-						  command: jekyll serve --force_polling --livereload --drafts
-						  ports:
-						  - 4000:4000
-						  - 35729:35729
-						  volumes:
-						  - ./:/srv/jekyll
-					</code></pre>
-					<pre class=""><code data-trim data-noescape class="language-bash">
-						docker compose up
-					</code></pre>
+					<div class="">
+						<p class="smaller"></p>
+						<pre class=""><code data-trim data-noescape class="language-bash">
+							git mv _drafts/my-first-post.md _posts/2021-06-18-my-first-post.md
+							git commit -am "Published first post"
+ 						</code></pre>
+					</div>
 
 					<aside class="notes">
 						<ul>
-							<li>Need to reload if editing _config.yml or gemfile</li>
+							<li>in your favourite editor</li>
+							<li>Should see the page generation trigger in Jekyll</li>
 						</ul>
 					</aside>
 
-				</section>
+				</section> -->
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
+				<section data-transition="convex" data-background="rgb(33, 44, 55)">
+					<section data-auto-animate data-transition="convex" >
 
-					<h2 class="smaller">Jekyll</h2>
+						<h2>CI Build</h2>
 
-					<h4 class="">Theme</h4>
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
 
+					</section>
+					<section data-auto-animate>
 
-					<aside class="notes">
+						<h2>CI Build</h2>
+
+						<h4>Alternative</h4>
+
 						<ul>
-							<li>Need to reload if editing _config.yml or gemfile</li>
+							<li><a href="">Github actions</a></li>
+							<!-- <li><a href="">Google Cloud build</a></li> -->
 						</ul>
-					</aside>
 
-				</section>
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
+					</section>
+					<section data-auto-animate>
 
-					<h2 class="smaller">Jekyll</h2>
+						<h2 class="smallest">CI Build</h2>
 
-					<h4 class="">Templates</h4>
+						<h2>CircleCI</h2>
 
-
-					<aside class="notes">
 						<ul>
-							<li>Need to reload if editing _config.yml or gemfile</li>
+							<li><a href="">Github actions</a></li>
+							<!-- <li><a href="">Google Cloud build</a></li> -->
 						</ul>
-					</aside>
 
-				</section>
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
 
-				<section data-auto-animate data-background="rgb(88, 33, 55)">
-
-					<h2 class="smaller">Jekyll</h2>
-
-					<h4 class="">Drafts</h4>
-
-
-					<aside class="notes">
-						<ul>
-							<li>Need to reload if editing _config.yml or gemfile</li>
-						</ul>
-					</aside>
-
-				</section>
-
-				<section data-transition="convex" data-background="rgb(33, 44, 33)">
-
-					<h2>CI</h2>
-					<ul>
-						<li></li>
-					</ul>
-
-					<aside class="notes">
-						<ul>
-							<li></li>
-						</ul>
-					</aside>
-
+					</section>
 				</section>
 
 				<section data-transition="convex" data-background="rgb(33, 44, 33)">

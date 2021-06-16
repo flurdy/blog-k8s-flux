@@ -8,8 +8,8 @@ managed with Flux, a gitops tool.
 ## Author
 
 * Ivar Abrahamsen
-  * flurdy.com
-  * twitter.com/flurdy
+  * [flurdy.com](https://flurdy.com)
+  * [@flurdy](https://twitter.com/flurdy)
 
 ## Date
 
@@ -22,6 +22,20 @@ managed with Flux, a gitops tool.
 #### Presentation source
 
 [github.com/flurdy/blog-k8s-flux](https://github.com/flurdy/blog-k8s-flux)
+
+## Tools
+
+* [Jekyll](https://jekyllrb.com)
+  <!-- * [Hugo](https://gohugo.io) -->
+* [CircleCI](circleci.com)
+  <!-- * [Github Actions](https://github.com/features/actions) -->
+* [Quay](https://quay.io)
+  <!-- * [Google Container Registry](https://cloud.google.com/container-registry/) -->
+* [Digital Ocean](https://www.digitalocean.com)
+  <!-- * [Google GKE](https://cloud.google.com/kubernetes-engine/) -->
+* [Kubernetes](https://kubernetes.io)
+* [Flux](https://fluxcd.io)
+  <!-- * [Argo](https://argoproj.github.io) -->
 
 ## Run
 

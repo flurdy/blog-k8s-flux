@@ -53,3 +53,7 @@ pre.wider {
 em.custom {
     color: #f99;
 }
+
+pre code.editor {
+  background: #273822;
+}
