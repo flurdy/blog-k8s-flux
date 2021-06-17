@@ -1219,8 +1219,13 @@
 
 						<h2 class="smallest">Flux</h2>
 
+                  <div>
+
+                     <img src="img/gitops-toolkit.png" width="600" alt="toolkit">
+                  </div>
+
 						<ul>
-							<li>Recently v2 has been released</li>
+                     <li>Recently v2 has been released</li>
 						</ul>
 
 						<aside class="notes">
@@ -1266,8 +1271,8 @@
 
 						<div class="fragment">
 							<pre><code data-trim data-noescape class="language-bash">
-								export GITHUB_TOKEN=<em>your-token</em>
 								export GITHUB_USER=<em>your-username</em>
+								export GITHUB_TOKEN=<em>your-token</em>
 							</code></pre>
 						</div>
 
@@ -1282,7 +1287,7 @@
 
 						<h2 class="smallest">Flux</h2>
 
-						<h4>Setup</h4>
+						<h4>Initialise</h4>
 
 						<div class="fragment">
 							<ul>
@@ -1301,12 +1306,8 @@
 								--owner=$GITHUB_USER \
 								--repository=<em>fleet-doubledragon</em> \
 								--branch=main \
-								--path=./clusters/<em>doubledragon-01</em> \
+								--path=./clusters/<em>doubledragon-prod</em> \
 								--personal
-							</code></pre>
-							<pre><code data-trim data-noescape class="language-bash">
-								git clone https://github.com/$GITHUB_USER/<em>fleet-doubledragon</em>
-								cd <em>fleet-doubledragon</em>
 							</code></pre>
 						</div>
 
@@ -1322,16 +1323,432 @@
 
 						<h2 class="smallest">Flux</h2>
 
-						<h4>Blog via Flux</h4>
+						<h4>Initialised</h4>
+
+						<div class="fragment">
+							<pre><code data-trim data-noescape class="language-bash">
+								git clone https://github.com/$GITHUB_USER/<em>fleet-doubledragon</em>
+								cd <em>fleet-doubledragon</em>
+								tree
+							</code></pre>
+                     <div class="smaller">
+                        <pre><code data-trim data-noescape class="language-bash editor editorgreen">
+                           <em>fleet-doubledragon</em>/
+                           ├── clusters/
+                           │   └── <em>doubledragon-prod</em>/
+                           │       └── flux-system/
+                           │           ├── gotk-components.yaml
+                           │           ├── gotk-sync.yaml
+                           │           └── kustomization.yaml
+                           └── README.md
+                        </code></pre>
+                     </div>
+						</div>
+						<div class="fragment">
+							<pre><code data-trim data-noescape class="language-bash">
+								kubectl get all -n flux-system
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+					</section>
+            </section>
+
+				<section data-transition="convex" data-background="rgb(11, 11, 11">
+					<section data-auto-animate data-transition="convex">
+
+						<h2>Secrets</h2>
+
+						<aside class="notes">
+							<ul>
+								<li>You don't want clear text secrets in Git</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+                  <h2 class="smallest">Secrets</h2>
+
+                  <h2>Alternatives</h2>
+
+                  <ul>
+                     <li>Manual Kubernetes secrets</li>
+                     <li>
+                        Mozilla's SOPS
+                     </li>
+                  </ul>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+                  <h2 class="smallest">Secrets</h2>
+
+                  <h2>Sealed Secrets</h2>
+
+						<p class="smaller"><a href="https://github.com/bitnami-labs/sealed-secrets">github.com/bitnami-labs/sealed-secrets</a></p>
+
+
+						<aside class="notes">
+							<ul>
+                        <li>Encrypted in Git</li>
+                        <li>Decrypted in runtime...</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+                  <h2 class="smallest">Sealed Secrets</h2>
+
+                  <h4>Install CLI</h4>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     brew install kubeseal
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+                  <h2 class="smallest">Sealed Secrets</h2>
+
+                  <h4>Helm chart</h4>
+
+                  <p class="smaller">Add Helm repository</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     flux create source helm sealed-secrets \
+                       --interval=2h \
+                       --url=https://bitnami-labs.github.io/sealed-secrets
+						</code></pre>
+
+                  <p class="smaller">Create Helm release</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     flux create helmrelease sealed-secrets \
+                       --interval=2h \
+                       --release-name=sealed-secrets \
+                       --target-namespace=flux-system \
+                       --source=HelmRepository/sealed-secrets \
+                       --chart=sealed-secrets \
+                       --chart-version=">=1.15.0-0" \
+                       --crds=CreateReplace
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+                  <h2 class="smallest">Sealed Secrets</h2>
+
+                  <h4>Public key</h4>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     mkdir -p clusters/<em>doubledragon-prod</em>/secrets
+                     kubeseal --fetch-cert \
+                       --controller-name=sealed-secrets \
+                       --controller-namespace=flux-system \
+                       > clusters/<em>doubledragon-prod</em>/secrets/pub-sealed-secrets.pem
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+                        <li>Will use this later for registry auth</li>
+							</ul>
+						</aside>
+
+					</section>
+            </section>
+
+				<section data-transition="convex" data-background="rgb(75, 75, 11">
+					<section data-auto-animate data-transition="convex">
+
+						<h2 class="">Container Registry II</h2>
+
+						<aside class="notes">
+							<ul>
+								<li>Adding it to the cluster</li>
+							</ul>
+						</aside>
+					</section>
+            </section>
+
+				<section data-transition="convex" data-background="rgb(75, 11, 75">
+					<section data-auto-animate data-transition="convex">
+
+						<h2 class="">Blog via Flux</h2>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog via Flux</h2>
+
+                  <ul>
+                     <li>Namespace</li>
+                     <li>Deployment</li>
+                     <li>Service</li>
+                     <li>Ingress</li>
+                     <li>Registry</li>
+                     <li>Secret</li>
+                     <li><strike>Kustomize</strike></li>
+                     <li><strike>GitRepository</strike></li>
+                     <li><strike>Certificate</strike></li>
+                  </ul>
+
+						<aside class="notes">
+							<ul>
+                        <li>Not enough time</li>
+                        <li>All the YAML</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog via Flux</h2>
+
+                  <h4>Create Namespace</h4>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     mkdir -p clusters/<em>doubledragon-prod</em>/<em>arcade</em>
+                     cd clusters/<em>doubledragon-prod</em>/<em>arcade</em>
+                     touch namespace.yml
+						</code></pre>
+
+                  <div class="smaller">
+                     <pre><code data-trim data-noescape class="language-kubernetes editor">
+                        apiVersion: v1
+                        kind: Namespace
+                        metadata:
+                          name: <em>arcade</em>
+                     </code></pre>
+                  </div>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     git add namespace.yml
+                     git commit -m "Added <em>arcade</em> namespace"
+                     git push
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+                        <li>Free to organise folder structure</li>
+                        <li>Maybe apps as root folder if multi clusters/environments</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog via Flux</h2>
+
+                  <h4>Create Deployment</h4>
+
+                  <div class="fragment">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        mkdir <em>myblog</em>
+                        touch <em>myblog</em>/deployment.yml
+                     </code></pre>
+
+                     <div class="smaller">
+                        <pre><code data-trim data-noescape class="language-kubernetes editor">
+                           apiVersion: apps/v1
+                           kind: Deployment
+                           metadata:
+                           name: <em>myblog</em>-deployment
+                           annotations:
+                              fluxcd.io/automated: "true"
+                           spec:
+                           selector:
+                              matchLabels:
+                                 app: <em>myblog</em>
+                           replicas: 2
+                           template:
+                              metadata:
+                                 labels:
+                                 app: <em>myblog</em>
+                              spec:
+                                 containers:
+                                 - name: <em>myblog</em>-container
+                                 image: quay.io/<em>yourusername</em>/<em>myblog</em>:<em>1.0.1</em>
+                                 ports:
+                                 - containerPort: 80
+                                 imagePullSecrets:
+                                 - name: <em>quay-registry</em>
+                        </code></pre>
+                     </div>
+
+                  </div>
+
+                  <div class="fragment">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        # git add <em>myblog</em>/deployment.yml # not yet
+                     </code></pre>
+                  </div>
+
+						<aside class="notes">
+							<ul>
+                        <li>Not set up registry yet</li>
+                        <li>Also we don't know the semver ion yet</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog via Flux</h2>
+
+                  <h4>Create Service</h4>
+
+                  <div class="fragment">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        touch <em>myblog</em>/service.yml
+                     </code></pre>
+
+                     <div class="smaller">
+                        <pre><code data-trim data-noescape class="language-kubernetes editor">
+                           apiVersion: v1
+                           kind: Service
+                           metadata:
+                             name: <em>myblog</em>-service
+                           spec:
+                             selector:
+                               app: <em>myblog</em>
+                             ports:
+                             - protocol: TCP
+                               port: 80
+                               targetPort: 80
+                        </code></pre>
+                     </div>
+
+                     <pre><code data-trim data-noescape class="language-bash">
+                        # git add <em>myblog</em>/service.yml # not yet
+                     </code></pre>
+                  </div>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog via Flux</h2>
+
+                  <h4>Create Ingress</h4>
+
+                  <div class="fragment">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        touch <em>myblog</em>/ingress.yml
+                     </code></pre>
+
+                     <div class="smaller">
+                        <pre><code data-trim data-noescape class="language-kubernetes editor">
+                           apiVersion: extensions/v1beta1
+                           kind: Ingress
+                           metadata:
+                             name: <em>myblog</em>-ingress
+                             annotations:
+                               kubernetes.io/ingress.class: nginx
+                           spec:
+                             rules:
+                             - host: <em>myblog.example.com</em>
+                               http:
+                                 paths:
+                                 - backend:
+                                     serviceName: <em>myblog</em>-service
+                                     servicePort: 80
+
+                        </code></pre>
+                     </div>
+
+                     <pre><code data-trim data-noescape class="language-bash">
+                        # git add <em>myblog</em>/ingress.yml # not yet
+                     </code></pre>
+                  </div>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h4 class="smallest">Blog via Flux</h4>
+
+                  <p class="smaller">Monitor rollout</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     watch flux get kustomizations
+						</code></pre>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     kubectl -n default get deployments,services
+						</code></pre>
+
+                  <div class="smallest">
+                     <pre><code data-trim data-noescape class="language-bash editor editorgreen">
+                        NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+                        deployment.apps/<em>myblog</em>   2/2     2            2           108s
+
+                        NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+                        service/<em>myblog</em>      ClusterIP   10.100.149.126   <none>             9898/TCP,9999/TCP   108s
+
+                     </code></pre>
+                  </div>
+
+						<aside class="notes">
+							<ul>
+                        <li>Watch as the cluster state syncs</li>
+                        <li>No ingress yet</li>
+                        <li>No external ip</li>
+							</ul>
+						</aside>
+					</section>
+
+               <!--
+					<section data-auto-animate>
 
                   <p class="smaller">Create a <em>GitRepository</em> manifest</p>
 
 						<pre><code data-trim data-noescape class="language-bash">
                      flux create source git <em>myblog</em> \
-                       --url=https://github.com/<em>yourusername</em>/<em>myblog</em> \
+                       --url=https://github.com/$GITHUB_USER/<em>myblog</em> \
                        --branch=master \
                        --interval=30s \
-                       --export > ./clusters/<em>doubledragon-01</em>/<em>myblog</em>-source.yaml
+                       --export > ./clusters/<em>doubledragon-01</em>/apps/<em>myblog</em>-source.yaml
 						</code></pre>
                   <div class="smaller">
                      <pre><code data-trim data-noescape class="language-kubernetes editor editorgreen">
@@ -1370,8 +1787,9 @@
                                 │   ├── gotk-components.yaml
                                 │   ├── gotk-sync.yaml
                                 │   └── kustomization.yaml
-                                ├── <em>myblog</em>-kustomization.yaml
-                                └── <em>myblog</em>-source.yaml
+                                └── apps
+                                    ├── <em>myblog</em>-kustomization.yaml
+                                    └── <em>myblog</em>-source.yaml
                      </code></pre>
                   </div>
 
@@ -1388,79 +1806,16 @@
 						</aside>
 					</section>
 
-					<section data-auto-animate>
-
-						<h4 class="smallest">Blog via Flux</h4>
-
-                  <p class="smaller">Monitor rollout</p>
-
-						<pre><code data-trim data-noescape class="language-bash">
-                     watch flux get kustomizations
-						</code></pre>
-
-						<pre><code data-trim data-noescape class="language-bash">
-                     kubectl -n default get deployments,services
-						</code></pre>
-
-                  <div class="smallest">
-                     <pre><code data-trim data-noescape class="language-bash editor editorgreen">
-                        NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
-                        deployment.apps/<em>myblog</em>   2/2     2            2           108s
-
-                        NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-                        service/<em>myblog</em>      ClusterIP   10.100.149.126   <none>             9898/TCP,9999/TCP   108s
-
-                     </code></pre>
-                  </div>
-
-						<aside class="notes">
-							<ul>
-                        <li>Watch as the cluster state syncs</li>
-                        <li>No ingress yet</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section data-auto-animate>
-
-						<h4 class="smallest">Blog via Flux</h4>
-
-
-						<pre><code data-trim data-noescape class="language-bash">
-						</code></pre>
-
-						<aside class="notes">
-							<ul>
-							</ul>
-						</aside>
-					</section>
-
-
-
-
-
-
-					<section data-auto-animate>
-
-						<h2 class="smallest">Flux</h2>
-
-						<h4>Setup</h4>
+            -->
+            </section>
+<!--
 
 						<ul>
 							<li>Add registry secret</li>
 							<li>Add certificate</li>
 							<li>Add ingress</li>
 						</ul>
-
-						<aside class="notes">
-							<ul>
-								<li></li>
-							</ul>
-						</aside>
-
-					</section>
-				</section>
-
+               -->
 			</div>
 		</div>
 
