@@ -1525,6 +1525,16 @@
                        -o yaml &gt; registry/<em>quay-clear.yml</em>
 						</code></pre>
 
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+					</section>
+					<section data-auto-animate data-transition="convex" >
+
+						<h2 class="smallest">Container Registry</h2>
+
                   <p class="smaller">Encrypt secret</p>
 
 						<pre><code data-trim data-noescape class="language-bash">
@@ -1537,6 +1547,16 @@
 						<pre><code data-trim data-noescape class="language-bash">
                      git add registry/<em>quay-encrypted.yml</em>
                      rm registry/<em>quay-clear.yml</em>
+						</code></pre>
+
+                  <p class="smaller">Verify</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     git commit -m "registry added"
+                     git push
+						</code></pre>
+						<pre><code data-trim data-noescape class="language-bash">
+                     kubectl get secret,sealedsecret
 						</code></pre>
 
 						<aside class="notes">
@@ -1569,9 +1589,7 @@
                      <li>Namespace</li>
                      <li>Deployment</li>
                      <li>Service</li>
-                     <li>Ingress</li>
-                     <li>Registry</li>
-                     <li>Secret</li>
+                     <li>Ingress ???</li>
                      <li><strike>Kustomize</strike></li>
                      <li><strike>GitRepository</strike></li>
                      <li><strike>Certificate</strike></li>
@@ -1599,7 +1617,7 @@
 						</code></pre>
 
                   <div class="smaller">
-                     <pre><code data-trim data-noescape class="language-kubernetes editor">
+                     <pre><code data-trim data-noescape class="language-yaml editor">
                         apiVersion: v1
                         kind: Namespace
                         metadata:
@@ -1634,30 +1652,30 @@
                      </code></pre>
 
                      <div class="smaller">
-                        <pre><code data-trim data-noescape class="language-kubernetes editor">
-                           apiVersion: apps/v1
-                           kind: Deployment
+                        <pre><code data-trim data-noescape class="language-yaml editor" data-line-numbers="4|6|19|22-23">
+                        apiVersion: apps/v1
+                        kind: Deployment
+                        metadata:
+                        name: <em>myblog</em>-deployment
+                        annotations:
+                           fluxcd.io/automated: "true"
+                        spec:
+                        selector:
+                           matchLabels:
+                              app: <em>myblog</em>
+                        replicas: 2
+                        template:
                            metadata:
-                           name: <em>myblog</em>-deployment
-                           annotations:
-                              fluxcd.io/automated: "true"
+                              labels:
+                              app: <em>myblog</em>
                            spec:
-                           selector:
-                              matchLabels:
-                                 app: <em>myblog</em>
-                           replicas: 2
-                           template:
-                              metadata:
-                                 labels:
-                                 app: <em>myblog</em>
-                              spec:
-                                 containers:
-                                 - name: <em>myblog</em>-container
-                                 image: quay.io/<em>yourusername</em>/<em>myblog</em>:<em>1.0.1</em>
-                                 ports:
-                                 - containerPort: 80
-                                 imagePullSecrets:
-                                 - name: <em>quay-registry</em>
+                              containers:
+                              - name: <em>myblog</em>-container
+                              image: quay.io/<em>yourusername</em>/<em>myblog</em>:<em>1.0.1</em>
+                              ports:
+                              - containerPort: 80
+                              imagePullSecrets:
+                              - name: <em>quay-registry</em>
                         </code></pre>
                      </div>
 
@@ -1665,14 +1683,19 @@
 
                   <div class="fragment">
                      <pre><code data-trim data-noescape class="language-bash">
-                        # git add <em>myblog</em>/deployment.yml # not yet
+                        git add <em>myblog</em>/deployment.yml
+                        git commit -m "Added <em>myblog</em> deployment"
+                        git push
+                     </code></pre>
+                     <pre><code data-trim data-noescape class="language-bash">
+                        watch kubectl get deployment
                      </code></pre>
                   </div>
 
 						<aside class="notes">
 							<ul>
-                        <li>Not set up registry yet</li>
-                        <li>Also we don't know the semver ion yet</li>
+                        <li>Check in quay what the current semver version is</li>
+                        <li>After the initial deploy this will be automated</li>
 							</ul>
 						</aside>
 					</section>
@@ -1689,7 +1712,7 @@
                      </code></pre>
 
                      <div class="smaller">
-                        <pre><code data-trim data-noescape class="language-kubernetes editor">
+                        <pre><code data-trim data-noescape class="language-yaml editor">
                            apiVersion: v1
                            kind: Service
                            metadata:
@@ -1705,16 +1728,18 @@
                      </div>
 
                      <pre><code data-trim data-noescape class="language-bash">
-                        # git add <em>myblog</em>/service.yml # not yet
+                        git add <em>myblog</em>/service.yml
                      </code></pre>
                   </div>
 
 						<aside class="notes">
 							<ul>
+                        <li>Service can be load balancer if only service in cluster</li>
 							</ul>
 						</aside>
 					</section>
 
+               <!--
 					<section data-auto-animate>
 
 						<h2 class="smallest">Blog via Flux</h2>
@@ -1727,7 +1752,7 @@
                      </code></pre>
 
                      <div class="smaller">
-                        <pre><code data-trim data-noescape class="language-kubernetes editor">
+                        <pre><code data-trim data-noescape class="language-yaml editor">
                            apiVersion: extensions/v1beta1
                            kind: Ingress
                            metadata:
@@ -1756,6 +1781,7 @@
 							</ul>
 						</aside>
 					</section>
+            -->
 
 					<section data-auto-animate>
 
@@ -1763,22 +1789,26 @@
 
                   <p class="smaller">Monitor rollout</p>
 
+                  <pre><code data-trim data-noescape class="language-bash">
+                     git commit -m "Added <em>myblog</em>"
+                     git push
+                  </code></pre>
+
 						<pre><code data-trim data-noescape class="language-bash">
                      watch flux get kustomizations
 						</code></pre>
 
 						<pre><code data-trim data-noescape class="language-bash">
-                     kubectl -n default get deployments,services
+                     watch kubectl -n default get deployments,services
 						</code></pre>
 
                   <div class="smallest">
-                     <pre><code data-trim data-noescape class="language-bash editor editorgreen">
+                     <pre><code data-trim data-noescape class="language-bash editor">
                         NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
                         deployment.apps/<em>myblog</em>   2/2     2            2           108s
 
                         NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
                         service/<em>myblog</em>      ClusterIP   10.100.149.126   <none>             9898/TCP,9999/TCP   108s
-
                      </code></pre>
                   </div>
 
@@ -1787,6 +1817,8 @@
                         <li>Watch as the cluster state syncs</li>
                         <li>No ingress yet</li>
                         <li>No external ip</li>
+                        <li>Can tunnel in</li>
+                        <li>Or launch as NodeIp.</li>
 							</ul>
 						</aside>
 					</section>
