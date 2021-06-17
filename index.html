@@ -850,6 +850,8 @@
 
 						<h2>Quay</h2>
 
+						<p class="smaller"><a href="https://quay.io/">quay.io</a></p>
+
 						<ul class="fragment">
 							<li>
 								Now owned by Redhat
@@ -995,9 +997,10 @@
 						<aside class="notes">
 							<ul>
 								<li>GKE most feature rich and up to date</li>
-								<li>GKE not longer reasonably priced</li>
+								<li>GKE increased prices</li>
 								<li>AKS not bad actually</li>
-								<li>EKS was expensive, better now, but not tried it</li>
+								<li>EKS was initially expensive</li>
+								<li>EKS has reduced prices</li>
 							</ul>
 						</aside>
 
@@ -1013,7 +1016,7 @@
 
 						<ul class="fragment">
 							<li>Simple to use</li>
-							<li>Full access</li>
+							<!-- <li>Full access</li> -->
 							<li>Only pay for worker nodes</li>
 						</ul>
 
@@ -1065,7 +1068,7 @@
 
 					</section>
 
-					<section data-auto-animate>
+					<section data-auto-animate data-transition="convex">
 
 						<h2 class="smallest">DigitalOcean Kubernetes</h2>
 
@@ -1086,11 +1089,11 @@
 									</li>
 								</ul>
 							</li>
-							<li>
+							<li class="fragment">
 								Test with <em>kubectx</em> if the <em>Kubectl</em> context is correct
 							</li>
-							<li>Click through the rest of the <em>Getting Started</em> steps</li>
-							<li>
+							<li class="fragment">Click through the rest of the <em>Getting Started</em> steps</li>
+							<li class="fragment">
 								Test Kubectl connection with
 								<ul>
 									<li>
@@ -1105,8 +1108,6 @@
 
 						<aside class="notes">
 							<ul>
-								<li class="">Default node pool is ok for now</li>
-								<li class="fragment">Click create at the bottom and wait a little</li>
 								<li>Something UUID like:</li>
 							</ul>
 						</aside>
@@ -1117,9 +1118,101 @@
 				<section data-transition="convex" data-background="rgb(33, 66, 33)">
 					<section data-auto-animate data-transition="convex">
 
-						<h2>Flux</h2>
+						<h2>GitOps</h2>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2>GitOps</h2>
+
+						<ul>
+							<li>Version controlled cluster state</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>Championed by WeaveWorks</li>
+								<li>In Kuberenetes context</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Gitops</h2>
+
+						<h2 class="smallest">Alternatives</h2>
+
+						<ul>
+							<li>Argo</li>
+							<li>Keel</li>
+							<li>Terraform et al</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Gitops</h2>
+
+						<h2 class="">Flux</h2>
+
+						<p class="smaller"><a href="https://fluxcd.io/">fluxcd.io</a></p>
+
+						<ul>
+							<li>WeaveWorks</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Flux</h2>
+
 						<ul>
 							<li></li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Flux</h2>
+
+						<h4>Setup</h4>
+
+						<ul>
+							<li>Add registry secret</li>
+							<li>Add deployment</li>
+							<li>Add service</li>
+							<li>Add certificate</li>
+							<li>Add ingress</li>
 						</ul>
 
 						<aside class="notes">
