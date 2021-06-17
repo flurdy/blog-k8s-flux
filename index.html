@@ -465,39 +465,23 @@
 								git commit -am "First post"
 							</code></pre>
 						</div>
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-bash">
+								gh repo create <em>myblog</em>
+							</code></pre>
+						</div>
 
 						<aside class="notes">
 							<ul>
 								<li>in your favourite editor</li>
 								<li>Should see the page generation trigger in Jekyll</li>
+								<li>If you have Github CLI</li>
+								<li>Public repository for now</li>
 							</ul>
 						</aside>
 
 					</section>
 				</section>
-
-				<!-- <section data-auto-animate data-background="rgb(88, 33, 55)">
-
-					<h2 class="smaller">Jekyll</h2>
-
-					<h4 class="">Publish</h4>
-
-					<div class="">
-						<p class="smaller"></p>
-						<pre class=""><code data-trim data-noescape class="language-bash">
-							git mv _drafts/my-first-post.md _posts/2021-06-18-my-first-post.md
-							git commit -am "Published first post"
- 						</code></pre>
-					</div>
-
-					<aside class="notes">
-						<ul>
-							<li>in your favourite editor</li>
-							<li>Should see the page generation trigger in Jekyll</li>
-						</ul>
-					</aside>
-
-				</section> -->
 
 				<section data-transition="convex" data-background="rgb(55, 44, 33)">
 					<section data-auto-animate data-transition="convex" >
@@ -536,19 +520,16 @@
 
 						<h4>Alternatives</h4>
 
-						<ul>
-							<li class="fragment">
-								<a href="https://github.com/features/actions">Github actions</a>
-								<p class="smaller">
-									<a h ref="https://github.com/features/actions">github.com/features/actions</a>
-								</p>
-							</li>
-							<!-- <li><a href="">Google Cloud build</a></li> -->
+						<ul class="fragment">
+							<li>Github Actions</li>
+							<li>Travis</li>
+							<li>Google Cloud Build</li>
+							<li>Gitlab</li>
 						</ul>
 
 						<aside class="notes">
 							<ul>
-								<li></li>
+								<li>Not tried Gitlan CI parts</li>
 							</ul>
 						</aside>
 
@@ -566,7 +547,7 @@
 							<li>Integrates with your Github repositories</li>
 							<li>Can build private projects</li>
 							<li>Pipelines</li>
-							<li>Configuration is local so can be in version control</li>
+							<li>Configuration is a local file so can be in version control</li>
 						</ul>
 
 						<aside class="notes">
@@ -584,14 +565,36 @@
 						<h4 class="">Set up project</h4>
 
 						<ol>
-							<li>Log in to circleci.com with Github</li>
+							<li class="fragment">Log in to circleci.com with Github</li>
 							<li class="fragment">On the dashboard, click on Projects on the left</li>
 							<li class="fragment">Find our blog repository, and click on <em>"Set up project"</em></li>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
 						</ol>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+						<h2 class="smallest">CircleCI</h2>
+
+						<h4 class="">Dockerise project</h4>
+
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-bash">
+								touch Dockerfile
+							</code></pre>
+						</div>
+
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-docker editor">
+								FROM nginx:1.15-alpine
+
+								COPY _site /usr/share/nginx/html
+							</code></pre>
+						</div>
 
 						<aside class="notes">
 							<ul>
@@ -786,7 +789,7 @@
 				<section data-transition="convex" data-background="rgb(66, 66, 22)">
 					<section data-auto-animate data-transition="convex">
 
-						<h2>Docker Container Registery</h2>
+						<h2>Docker Container Registry</h2>
 
 						<aside class="notes">
 							<ul>
@@ -798,7 +801,7 @@
 
 					<section data-auto-animate>
 
-						<h2>Docker Container Registery</h2>
+						<h2>Docker Container Registry</h2>
 
 						<ul class="fragment">
 							<li>Free or cheap</li>
@@ -814,15 +817,103 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Docker Container Registery</h2>
+						<h2 class="smallest">Docker Container Registry</h2>
 
 						<h4>Alternatives</h4>
 
 						<ul class="fragment">
+							<li>
+								Google Container Registery
+							</li>
+							<li>
+								Github packages
+							</li>
+							<li>
+								DigitalOcean Container Registery
+							</li>
 						</ul>
 
 						<aside class="notes">
 							<ul>
+								<li>I use GCR for most of my latest projects</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Docker Container Registry</h2>
+
+						<h2>Quay</h2>
+
+						<ul class="fragment">
+							<li>
+								Now owned by Redhat
+							</li>
+							<li>Free public repositories</li>
+							<li>Robot credentials</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Quay</h2>
+
+						<ol>
+							<li class="fragment">
+								Sign up/in
+							</li>
+							<li class="fragment">
+								Create repository
+							</li>
+							<li class="fragment">
+								Create robot account for CircleCI,
+								with write permission
+							</li>
+							<li class="fragment">
+								in CircleCI
+								<ul>
+									<li>Edit Environment variables</li>
+									<li>Add Quay robot username as <em>DOCKER_LOGIN</em></li>
+									<li>Add Quay robot password as <em>DOCKER_PASSWORD</em></li>
+								</ul>
+						</ol>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Quay</h2>
+						<h2 class="smallest">Publish Jekyll blog</h2>
+
+						<div class="fragment">
+							<pre class=""><code data-trim data-noescape class="language-bash">
+								git mv _drafts/my-first-post.md _posts/2021-06-18-my-first-post.md
+								git commit -am "Published first post"
+								git push
+							</code></pre>
+						</div>
+
+						<ul>
+							<li class="fragment">You can monitor the pipeline build in CirclCI</li>
+							<li class="fragment">Eventually you can see an image in Quay</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>And later integrate slack for even handier notifications</li>
 							</ul>
 						</aside>
 
