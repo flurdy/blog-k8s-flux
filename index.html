@@ -16,7 +16,7 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section data-auto-animate data-background="rgb(33, 44, 33)">
+				<section data-auto-animate data-transition="convex" data-background="rgb(33, 44, 33)">
 
 					<h2>Blog on K8s with Flux</h2>
 
@@ -25,6 +25,23 @@
 				</section>
 
 				<section data-background="rgb(33, 44, 33)">
+
+					<section data-auto-animate>
+
+						<h2 class="smallest afragment afade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
+
+						<p class="fragment" data-fragment-index="1">Host your own blog</p>
+						<p class="fragment" data-fragment-index="2">on Kubernetes</p>
+						<p class="fragment" data-fragment-index="3">using gitops with Flux</p>
+
+						<aside class="notes">
+							<ul>
+								<li>Flux by Weaveworks</li>
+							</ul>
+						</aside>
+
+					</section>
+
 					<section data-auto-animate>
 
 						<h2 class="smallest">Blog on K8s with Flux</h2>
@@ -61,7 +78,7 @@
 								Ivar Abrahamsen
 								<ul>
 									<li><a href="https://twitter.com/flurdy">@flurdy</a></li>
-									<li><a href="https://flurdy.com">flurdy.com</a></li>
+									<!-- <li><a href="https://flurdy.com">flurdy.com</a></li> -->
 								</ul>
 							</li>
 
@@ -70,22 +87,6 @@
 						<aside class="notes">
 							<ul>
 								<li></li>
-							</ul>
-						</aside>
-
-					</section>
-
-					<section data-auto-animate>
-
-						<h2 class="smallest afragment afade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
-
-						<p class="fragment" data-fragment-index="1">Host your own blog</p>
-						<p class="fragment" data-fragment-index="2">on Kubernetes</p>
-						<p class="fragment" data-fragment-index="3">using gitops with Flux</p>
-
-						<aside class="notes">
-							<ul>
-								<li>Flux by Weaveworks</li>
 							</ul>
 						</aside>
 
@@ -101,8 +102,12 @@
 							<li>Introduction</li>
 							<li>Blog</li>
 							<li>CI build</li>
+							<li>Docker Container Registry</li>
 							<li>Kubernetes</li>
-							<li>Flux Gitops</li>
+							<li>Gitops</li>
+							<li>Secrets</li>
+							<li>Container Registry II</li>
+							<li>Blog via Flux</li>
 						</ol>
 
 						<aside class="notes">
@@ -834,11 +839,14 @@
 							<li>
 								AWS ECR
 							</li>
+							<!-- <li>
+                        <a href="http://flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html">flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html</a>
+							</li> -->
 						</ul>
 
 						<aside class="notes">
 							<ul>
-								<li>I use GCR for most of my latest projects</li>
+								<li>I use GCR for most of my latest private projects</li>
 							</ul>
 						</aside>
 
@@ -998,6 +1006,7 @@
 							<li>GKE - Google Kubernetes Engine</li>
 							<li>EKS - AWS Kubernetes Service</li>
 							<li>AKS - Azure Kubernetes Service</li>
+							<li>The Hard Way</li>
 						</ul>
 
 						<aside class="notes">
@@ -1485,14 +1494,58 @@
 				<section data-transition="convex" data-background="rgb(75, 75, 11">
 					<section data-auto-animate data-transition="convex">
 
-						<h2 class="">Container Registry II</h2>
+						<h2 class="">Container Registry</h2>
+						<h2 class="fragment">Part Deux</h2>
 
 						<aside class="notes">
 							<ul>
 								<li>Adding it to the cluster</li>
+								<li>Secrets</li>
 							</ul>
 						</aside>
 					</section>
+
+					<section data-auto-animate data-transition="convex" >
+
+						<h2 class="smallest">Container Registry</h2>
+
+                  <p class="smaller">Create secret</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     cd clusters/<em>doubledragon-prod</em>
+                     mkdir registry
+						</code></pre>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     kubectl create secret docker-registry <em>quay-registry</em> \
+                       --dry-run
+                       --docker-server=quay.io \
+                       --docker-username:<em>MYROBOTUSER</em> \
+                       --docker-password=<em>MYROBOTPASSWORD</em> \
+                       -o yaml &gt; registry/<em>quay-clear.yml</em>
+						</code></pre>
+
+                  <p class="smaller">Encrypt secret</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     kubeseal --format=yaml \
+                       --cert=secrets/pub-sealed-secrets.pem \
+                       &lt; registry/<em>quay-clear.yml</em> \
+                       &gt; registry/<em>quay-encrypted.yml</em>
+						</code></pre>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     git add registry/<em>quay-encrypted.yml</em>
+                     rm registry/<em>quay-clear.yml</em>
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+					</section>
+
             </section>
 
 				<section data-transition="convex" data-background="rgb(75, 11, 75">
