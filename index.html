@@ -862,6 +862,7 @@
 
 						<aside class="notes">
 							<ul>
+								<li>CoreOS</li>
 							</ul>
 						</aside>
 
@@ -930,9 +931,10 @@
 
 						<h2>Kubernetes</h2>
 
+						<p class="smaller fragment"><a href="https://kubernetes.io/">kubernetes.io</a></p>
+
 						<aside class="notes">
 							<ul>
-								<li></li>
 							</ul>
 						</aside>
 
@@ -952,6 +954,10 @@
 
 						<pre class=""><code data-trim data-noescape class="language-bash">
 							brew install kubectx
+						</code></pre>
+
+						<pre class=""><code data-trim data-noescape class="language-bash">
+							brew install Helm
 						</code></pre>
 
 						<aside class="notes">
@@ -1022,7 +1028,7 @@
 
 						<aside class="notes">
 							<ul>
-
+								<li>not awful UI</li>
 							</ul>
 						</aside>
 
@@ -1082,19 +1088,19 @@
 										Copy and execute the <em>doctl</em> line to download the cluster config,
 
 									</li>
-									<li>
-										<pre class=""><code data-trim data-noescape class="language-bash">
-											doctl kubernetes cluster kubeconfig save <em>1234-1234-41234-1234-1345578</em>
-										</code></pre>
-									</li>
 								</ul>
 							</li>
+							<li class="">
+								<pre><code data-trim data-noescape class="language-bash">
+									doctl kubernetes cluster kubeconfig save <em>1234-1234-41234</em>
+								</code></pre>
+							</li>
 							<li class="fragment">
-								Test with <em>kubectx</em> if the <em>Kubectl</em> context is correct
+								Test with <em>kubectx</em> if the <em>kubectl</em> context is correct
 							</li>
 							<li class="fragment">Click through the rest of the <em>Getting Started</em> steps</li>
 							<li class="fragment">
-								Test Kubectl connection with
+								Test <em>kubectl</em> connection with
 								<ul>
 									<li>
 										<pre class=""><code data-trim data-noescape class="language-bash">
@@ -1111,6 +1117,28 @@
 								<li>Something UUID like:</li>
 							</ul>
 						</aside>
+
+					</section>
+				</section>
+
+				<section data-transition="convex" data-background="rgb(75, 55, 75)">
+					<section data-auto-animate data-transition="convex">
+
+                  <img src="img/fork.png" width="400" alt="road fork">
+
+                  <ul>
+                     <li>GitOps</li>
+                     <li><strike>GitOps</strike></li>
+                  </ul>
+
+						<aside class="notes">
+							<ul>
+								<li>Blue or red pill</li>
+                        <li>Standard manual Kuberenetes</li>
+							</ul>
+						</aside>
+
+					</section>
 
 					</section>
 				</section>
@@ -1173,8 +1201,10 @@
 
 						<p class="smaller"><a href="https://fluxcd.io/">fluxcd.io</a></p>
 
-						<ul>
-							<li>WeaveWorks</li>
+						<ul class="fragment">
+							<li class="">WeaveWorks</li>
+							<li class="">Declarative</li>
+							<li >Automated</li>
 						</ul>
 
 						<aside class="notes">
@@ -1190,16 +1220,225 @@
 						<h2 class="smallest">Flux</h2>
 
 						<ul>
-							<li></li>
+							<li>Recently v2 has been released</li>
 						</ul>
 
 						<aside class="notes">
 							<ul>
-								<li></li>
+								<li>I used v1 a lot</li>
+								<li>Links at the end</li>
+								<li>v2 is different</li>
+								<li>More modular</li>
+								<li>Kustomization</li>
+								<li>Multi-cluster (environment)</li>
+								<li>Multi-tenant</li>
 							</ul>
 						</aside>
 
 					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Flux</h2>
+
+						<h4>Install Flux CLI</h4>
+
+						<div class="fragment">
+							<pre><code data-trim data-noescape class="language-bash">
+								brew install fluxcd/tap/flux
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>Like all the other tools...</li>
+								<li>bask completions</li>
+								<li>zsh and fish etc</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Flux</h2>
+
+						<h4>Github auth</h4>
+
+						<div class="fragment">
+							<pre><code data-trim data-noescape class="language-bash">
+								export GITHUB_TOKEN=<em>your-token</em>
+								export GITHUB_USER=<em>your-username</em>
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>Personal access token</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Flux</h2>
+
+						<h4>Setup</h4>
+
+						<div class="fragment">
+							<ul>
+								<li>Verify cluster connection</li>
+							</ul>
+							<pre><code data-trim data-noescape class="language-bash">
+								flux check --pre
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<ul>
+								<li>Bootstrap flux</li>
+							</ul>
+							<pre><code data-trim data-noescape class="language-bash">
+								flux bootstrap github \
+								--owner=$GITHUB_USER \
+								--repository=<em>fleet-doubledragon</em> \
+								--branch=main \
+								--path=./clusters/<em>doubledragon-01</em> \
+								--personal
+							</code></pre>
+							<pre><code data-trim data-noescape class="language-bash">
+								git clone https://github.com/$GITHUB_USER/<em>fleet-doubledragon</em>
+								cd <em>fleet-doubledragon</em>
+							</code></pre>
+						</div>
+
+						<aside class="notes">
+							<ul>
+								<li>The bootstrap will create the Github repo</li>
+                        <li>Idempotent</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Flux</h2>
+
+						<h4>Blog via Flux</h4>
+
+                  <p class="smaller">Create a <em>GitRepository</em> manifest</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     flux create source git <em>myblog</em> \
+                       --url=https://github.com/<em>yourusername</em>/<em>myblog</em> \
+                       --branch=master \
+                       --interval=30s \
+                       --export > ./clusters/<em>doubledragon-01</em>/<em>myblog</em>-source.yaml
+						</code></pre>
+                  <div class="smaller">
+                     <pre><code data-trim data-noescape class="language-kubernetes editor editorgreen">
+                        apiVersion: source.toolkit.fluxcd.io/v1beta1
+                        kind: GitRepository
+                        metadata:
+                          name: <em>myblog</em>
+                          namespace: flux-system
+                        spec:
+                          interval: 30s
+                          ref:
+                            branch: master
+                          url: https://github.com/<em>yourusername</em>/<em>myblog</em>
+                     </code></pre>
+                  </div>
+						<aside class="notes">
+							<ul>
+								<li>Instead of myblog you might have myblog.example.com</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h4 class="smallest">Blog via Flux</h4>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     tree
+						</code></pre>
+                  <div class="smaller">
+                     <pre><code data-trim data-noescape class="language-bash editor editorgreen">
+                        <em>fleet-doubledragon</em>
+                        └── clusters/
+                            └── <em>doubledragon-01</em>/
+                                ├── flux-system/
+                                │   ├── gotk-components.yaml
+                                │   ├── gotk-sync.yaml
+                                │   └── kustomization.yaml
+                                ├── <em>myblog</em>-kustomization.yaml
+                                └── <em>myblog</em>-source.yaml
+                     </code></pre>
+                  </div>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     git add -A && git commit -m "Added <em>myblog</em> GitRepository"
+                     git push
+						</code></pre>
+
+
+						<aside class="notes">
+							<ul>
+								<li>Very different file structure to v1</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h4 class="smallest">Blog via Flux</h4>
+
+                  <p class="smaller">Monitor rollout</p>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     watch flux get kustomizations
+						</code></pre>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     kubectl -n default get deployments,services
+						</code></pre>
+
+                  <div class="smallest">
+                     <pre><code data-trim data-noescape class="language-bash editor editorgreen">
+                        NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+                        deployment.apps/<em>myblog</em>   2/2     2            2           108s
+
+                        NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+                        service/<em>myblog</em>      ClusterIP   10.100.149.126   <none>             9898/TCP,9999/TCP   108s
+
+                     </code></pre>
+                  </div>
+
+						<aside class="notes">
+							<ul>
+                        <li>Watch as the cluster state syncs</li>
+                        <li>No ingress yet</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h4 class="smallest">Blog via Flux</h4>
+
+
+						<pre><code data-trim data-noescape class="language-bash">
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+					</section>
+
+
+
+
+
 
 					<section data-auto-animate>
 
@@ -1209,8 +1448,6 @@
 
 						<ul>
 							<li>Add registry secret</li>
-							<li>Add deployment</li>
-							<li>Add service</li>
 							<li>Add certificate</li>
 							<li>Add ingress</li>
 						</ul>

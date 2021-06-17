@@ -20,6 +20,12 @@ li.smallest,
 p.smallest {
     font-size: 0.5em;
 }
+.smaller pre {
+   font-size: 40%;
+}
+.smallest pre {
+   font-size: 35%;
+}
 .reveal .thumbnails img.half {
     width: 30%;
     height: 240px;
@@ -56,4 +62,13 @@ em.custom {
 
 pre code.editor {
   background: #273822;
+}
+pre code.editorgreen {
+  background: #372822;
+}
+pre code em {
+   color: #aaaaff;
+}
+pre code em.red {
+   color: #ffaaaa;
 }
