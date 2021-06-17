@@ -823,13 +823,16 @@
 
 						<ul class="fragment">
 							<li>
-								Google Container Registery
+								Google Container Registry
 							</li>
 							<li>
 								Github packages
 							</li>
 							<li>
-								DigitalOcean Container Registery
+								DigitalOcean Container Registry
+							</li>
+							<li>
+								AWS ECR
 							</li>
 						</ul>
 
@@ -924,13 +927,187 @@
 					<section data-auto-animate data-transition="convex">
 
 						<h2>Kubernetes</h2>
-						<ul>
-							<li></li>
-						</ul>
 
 						<aside class="notes">
 							<ul>
 								<li></li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="">Kubernetes</h2>
+
+						<h4>Install CLI</h4>
+
+						<pre class=""><code data-trim data-noescape class="language-bash">
+							brew install kubectl
+						</code></pre>
+
+						<p class="smaller">Optionally</p>
+
+						<pre class=""><code data-trim data-noescape class="language-bash">
+							brew install kubectx
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+								<li>On linux I also used the Homebrew version</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2>Kubernetes</h2>
+
+						<ul>
+							<li>Reasonable price</li>
+							<li>Ingress support</li>
+							<li>Full Kubernetes access</li>
+							<li>Reliable</li>
+							<li>Up to date</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>Only paying for nodes is a bonus</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Kubernetes</h2>
+
+						<h4>Alternatives</h4>
+
+						<ul class="fragment">
+							<li>GKE - Google Kubernetes Engine</li>
+							<li>EKS - AWS Kubernetes Service</li>
+							<li>AKS - Azure Kubernetes Service</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>GKE most feature rich and up to date</li>
+								<li>GKE not longer reasonably priced</li>
+								<li>AKS not bad actually</li>
+								<li>EKS was expensive, better now, but not tried it</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Kubernetes</h2>
+
+						<h2>DigitalOcean Kubernetes</h2>
+						<p class="smaller">(DOKS)</p>
+						<p class="smaller"><a href="https://m.do.co/c/fea5b8fd61fa">digitalocean.com/products/kubernetes/</a></p>
+
+						<ul class="fragment">
+							<li>Simple to use</li>
+							<li>Full access</li>
+							<li>Only pay for worker nodes</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">DigitalOcean Kubernetes</h2>
+
+						<h4>Install DO's CLI</h4>
+
+						<pre class=""><code data-trim data-noescape class="language-bash">
+							brew install doctl
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">DigitalOcean Kubernetes</h2>
+
+						<h4>Create cluster</h4>
+
+						<ol>
+							<li class="fragment">Sign up / sign in (<a href="https://m.do.co/c/fea5b8fd61fa">referral</a>)</li>
+							<li class="fragment">Go to Kubernetes page and click Create / Kubernetes cluster</li>
+							<li class="fragment">Change cluster name at the bottom, e.g. <em>doubledragon-01</em></li>
+						</ol>
+
+
+						<aside class="notes">
+							<ul>
+								<li class="">Default node pool is ok for now</li>
+								<li class="fragment">Click create at the bottom and wait a little</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">DigitalOcean Kubernetes</h2>
+
+						<h4>Connect to cluster</h4>
+
+						<ol>
+							<li class="fragment">
+								In the 3rd section of <em>Getting Started</em> part,
+								<ul>
+									<li>
+										Copy and execute the <em>doctl</em> line to download the cluster config,
+
+									</li>
+									<li>
+										<pre class=""><code data-trim data-noescape class="language-bash">
+											doctl kubernetes cluster kubeconfig save <em>1234-1234-41234-1234-1345578</em>
+										</code></pre>
+									</li>
+								</ul>
+							</li>
+							<li>
+								Test with <em>kubectx</em> if the <em>Kubectl</em> context is correct
+							</li>
+							<li>Click through the rest of the <em>Getting Started</em> steps</li>
+							<li>
+								Test Kubectl connection with
+								<ul>
+									<li>
+										<pre class=""><code data-trim data-noescape class="language-bash">
+											kubectl cluster-info
+										</code></pre>
+									</li>
+								</ul>
+							</li>
+						</ol>
+
+
+						<aside class="notes">
+							<ul>
+								<li class="">Default node pool is ok for now</li>
+								<li class="fragment">Click create at the bottom and wait a little</li>
+								<li>Something UUID like:</li>
 							</ul>
 						</aside>
 
