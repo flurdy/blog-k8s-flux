@@ -113,6 +113,7 @@
 							<li>Deploy Blog</li>
 							<li>Ingress</li>
 							<li>Image update</li>
+							<li>Oven ready</li>
 						</ol>
 
 						<aside class="notes">
@@ -209,6 +210,7 @@
 							<li>Hugo</li>
 							<li>Gatsby</li>
 							<li>Wordpress</li>
+							<li>Github pages</li>
 						</ul>
 
 						<aside class="notes">
@@ -279,7 +281,7 @@
 								<li class="fragment fade-left">
 
 									<pre class=""><code data-trim data-noescape class="wider language-shell">
-										docker pull jekyll/jekyll:4.2.0
+										docker pull jekyll/jekyll:3.8.6
 									</code></pre>
 								</li>
 							</ul>
@@ -391,24 +393,27 @@
 
 						<h4 class="">Docker Compose</h4>
 
-						<pre class=""><code data-trim data-noescape class="editor language-yaml">
-                     version: '3'
+                  <div class="smaller">
+                     <pre class=""><code data-trim data-noescape class="editor language-yaml">
+                        version: '3'
 
-                     services:
-                       jekyll:
-                         image: jekyll/jekyll:3.8.6
-                         container_name: <em class="custom">myblog</em>
-                         environment:
-                           - JEKYLL_ENV=docker
-                         command: jekyll serve --force_polling --livereload --drafts
-                         ports:
-                           - 4000:4000
-                           - 35729:35729
-                         volumes:
-                           - ./:/srv/jekyll
-						</code></pre>
+                        services:
+                        jekyll:
+                           image: jekyll/jekyll:3.8.6
+                           container_name: <em class="custom">myblog</em>
+                           environment:
+                              - JEKYLL_ENV=docker
+                           command: jekyll serve --force_polling --livereload --drafts
+                           ports:
+                              - 4000:4000
+                              - 35729:35729
+                           volumes:
+                              - ./:/srv/jekyll
+                     </code></pre>
+                  </div>
+
 						<pre class=""><code data-trim data-noescape class="language-bash">
-							docker compose up
+							docker-compose up
 						</code></pre>
 
 						<aside class="notes">
@@ -436,11 +441,11 @@
 								touch Gemfile
 							</code></pre>
 						</div>
-						<div class="">
+						<div class="smaller">
 							<pre class=""><code data-trim data-noescape class="editor">
                         ...
                         # gem "minima", "~> 2.0"
-                        gem "jekyll-theme-midnight"
+                        gem "jekyll-theme-hydejack"
                         ...
 							</code></pre>
 						</div>
@@ -449,11 +454,11 @@
 								touch _config.yml
 							</code></pre>
 						</div>
-						<div class="">
+						<div class="smaller">
 							<pre class=""><code data-trim data-noescape class="editor">
                         ...
                         # theme: minima
-                        theme: jekyll-theme-minimal
+                        theme: jekyll-theme-hydejack
                         ...
 							</code></pre>
 						</div>
@@ -678,7 +683,7 @@
 							</code></pre>
 						</div>
 
-						<div class="fragment">
+						<div class="fragment smaller">
 							<pre class=""><code data-trim data-noescape class="language-yaml editor"
 								data-line-numbers="2|3|4-5|7|9-11">
 								...
@@ -717,7 +722,7 @@
 
 						<p class="smaller">Part 2</p>
 
-						<div class="">
+						<div class="smaller">
 							<pre class=""><code data-trim data-noescape class="language-yaml editor"
 								data-line-numbers="2|3-4|5-6|10-12">
 								...
@@ -753,7 +758,7 @@
 
 						<p class="smaller">Part 3</p>
 
-						<div class="">
+						<div class="smaller">
 							<pre class=""><code data-trim data-noescape class="language-yaml editor"
 								data-line-numbers="2|7|8|9-10|11">
                               ...
@@ -789,7 +794,7 @@
 
 						<p class="smaller">Part 4</p>
 
-						<div class="">
+						<div class="smaller">
 							<pre class=""><code data-trim data-noescape class="language-yaml editor"
 								data-line-numbers="2|5|6-9|10,14|11-12,15-16">
 								...
@@ -834,6 +839,9 @@
 							</li>
 						</ul>
                   <div class="fragment">
+                     <pre class=""><code data-trim data-noescape class="language-bash">
+                        brew install circleci
+                     </code></pre>
                      <pre class=""><code data-trim data-noescape class="language-bash">
                         circleci config validate
                      </code></pre>
