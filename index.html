@@ -131,7 +131,8 @@
 							<li class="smaller"><a href="https://flurdy.com/docs/jekyll/">flurdy.com/docs/jekyll/</a></li>
 							<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-101.html">flurdy.com/docs/kubernetes/kubernetes-101.html</a></li>
 							<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html">flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html</a></li>
-							<li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
+							<li class="smaller"><a href="vahttp://flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html">flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html</a></li>
+                     <li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
 						</ul>
 
 						<aside class="notes">
@@ -628,7 +629,7 @@
 
 						<div class="fragment">
 							<pre class=""><code data-trim data-noescape class="language-yaml editor"
-								data-line-numbers="2|3|4-5|7|9-11|13-16">
+								data-line-numbers="2|3|4-5|7|9-11">
 								...
 								jobs:
 								  build:
@@ -739,7 +740,7 @@
 
 						<div class="">
 							<pre class=""><code data-trim data-noescape class="language-yaml editor"
-								data-line-numbers="2|5|6-9|10-12|14-16">
+								data-line-numbers="2|5|6-9|10,14|11-12,15-16">
 								...
 								workflows:
 								  version: 2
@@ -1095,7 +1096,7 @@
 
 						<ol>
 							<li class="fragment">
-								In the 3rd section of <em>Getting Started</em> part,
+								In the 3rd section of the <em>Getting Started</em> part,
 								<ul>
 									<li>
 										Copy and execute the <em>doctl</em> line to download the cluster config,
@@ -1103,7 +1104,7 @@
 									</li>
 								</ul>
 							</li>
-							<li class="">
+							<li class="fragment">
 								<pre><code data-trim data-noescape class="language-bash">
 									doctl kubernetes cluster kubeconfig save <em>1234-1234-41234</em>
 								</code></pre>
@@ -1575,7 +1576,7 @@
 
 						<aside class="notes">
 							<ul>
-								<li></li>
+								<li>kubectl describe</li>
 							</ul>
 						</aside>
 					</section>
@@ -1803,10 +1804,37 @@
 
                   <h2 class="smallest">Ingress</h2>
 
-                  <h2>Nginx</h2>
+                  <h2>Alternatives</h2>
+                  <ul>
+                     <li>HAProxy</li>
+                     <li>Istio</li>
+                     <li>Traefik</li>
+                     <li>Envoy</li>
+                     <li>Kong</li>
+                     <li>Nginx.org</li>
+                     <li>GCP, AKS, EKS ingress</li>
+                  </ul>
 
                   <aside class="notes">
                      <ul>
+                        <li>Service mesh</li>
+                        <li>API Gateway</li>
+                        <li>Nginx plus</li>
+                     </ul>
+                  </aside>
+               </section>
+
+               <section data-auto-animate>
+
+                  <h2 class="smallest">Ingress</h2>
+
+                  <h2>Nginx</h2>
+
+                  <p class="smallest fragment">Ingress-nginx</p>
+
+                  <aside class="notes">
+                     <ul>
+                        <li>Maintained by Kubernetes team</li>
                         <li>Config map</li>
                      </ul>
                   </aside>
@@ -1941,17 +1969,94 @@
                   </aside>
 
                </section>
+
                <section data-auto-animate>
 
                   <h2 class="smallest">Image update</h2>
 
                   <ul>
-                     <li></li>
+                     <li>Polls repository for image versions</li>
+                     <li>Included in v1</li>
+                     <li>Alpha in v2</li>
                   </ul>
 
                   <aside class="notes">
                      <ul>
                         <li>Threw my toys</li>
+                        <li>(June 2021)</li>
+                     </ul>
+                  </aside>
+
+               </section>
+
+               <section data-auto-animate>
+
+                  <h2 class="smallest">Image update</h2>
+
+                  <p class="smaller">Image repository</p>
+
+                  <div class="">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        cd ./clusters/<em>doubledragon-prod</em>
+                        flux create image repository <em>myblog</em> \
+                          --image=quay.io/<em>yourusername</em>/<em>myblog</em> \
+                          --interval=5m \
+                          --export &gt; ./<em>arcade</em>/<em>myblog</em>/registry.yaml
+                     </code></pre>
+                  </div>
+                  <p class="smaller">Image policy</p>
+
+                  <div class="">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        flux create image policy <em>myblog</em> \
+                          --image-ref=<em>myblog</em> \
+                          --select-semver=<em>1.0.x</em>
+                          --export &gt; ./<em>arcade</em>/<em>myblog</em>/policy.yaml
+                     </code></pre>
+                  </div>
+
+
+                  <aside class="notes">
+                     <ul>
+                        <li>A bit Keel semver</li>
+                     </ul>
+                  </aside>
+
+               </section>
+               <section data-auto-animate>
+
+                  <h2 class="smallest">Image update</h2>
+
+
+                  <div class="">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        git add <em>arcade</em>/<em>myblog</em>/registry.yaml
+                        git add <em>arcade</em>/<em>myblog</em>/policy.yaml
+                        git commit -m "image scan"
+                        git push
+                     </code></pre>
+                  </div>
+
+                  <p class="smaller">Force Flex to pull</p>
+
+                  <div class="">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        flux reconcile kustomization flux-system --with-source
+                     </code></pre>
+                  </div>
+
+                  <p class="smaller">List images found</p>
+
+                  <div class="">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        flux get image repository <em>myblog</em>
+                        flux get image policy <em>myblog</em>
+                     </code></pre>
+                  </div>
+
+
+                  <aside class="notes">
+                     <ul>
                      </ul>
                   </aside>
 
