@@ -350,7 +350,7 @@
 						<div class="fragment">
 							<p class="smaller">(inside container)</p>
 							<pre class=""><code data-trim data-noescape class="language-shell">
-								bundle exec jekyll bundler
+								jekyll serve
 							</code></pre>
 						</div>
 						<div class="fragment">
@@ -392,20 +392,20 @@
 						<h4 class="">Docker Compose</h4>
 
 						<pre class=""><code data-trim data-noescape class="editor language-yaml">
-							version: '3'
+                     version: '3'
 
-							services:
-							jekyll:
-							image: jekyll/jekyll:3.8.6
-							container_name: <em class="custom">myblog</em>
-							environment:
-							- JEKYLL_ENV=docker
-							command: jekyll serve --force_polling --livereload --drafts
-							ports:
-							- 4000:4000
-							- 35729:35729
-							volumes:
-							- ./:/srv/jekyll
+                     services:
+                       jekyll:
+                         image: jekyll/jekyll:3.8.6
+                         container_name: <em class="custom">myblog</em>
+                         environment:
+                           - JEKYLL_ENV=docker
+                         command: jekyll serve --force_polling --livereload --drafts
+                         ports:
+                           - 4000:4000
+                           - 35729:35729
+                         volumes:
+                           - ./:/srv/jekyll
 						</code></pre>
 						<pre class=""><code data-trim data-noescape class="language-bash">
 							docker compose up
@@ -426,14 +426,38 @@
 						<h4 class="">Themes</h4>
 
 						<ul>
-							<li class="smallest"><a href="https://jekyllthemes.org">jekyllthemes.org</a></li>
-							<li class="smallest"><a href="https://jekyll-themes.com">jekyll-themes.com</a></li>
-							<li class="smallest"><a href="https://jekyllthemes.io">jekyllthemes.io</a></li>
-							<li class="smallest"><a href="https://github.com/jekyll/jekyll/wiki/Themes">github.com/jekyll/jekyll/wiki/Themes</a></li>
-							<li class="smallest"><a href="https://github.com/planetjekyll/awesome-jekyll-themes">github.com/planetjekyll/awesome-jekyll-themes</a></li>
-							<li class="smallest"><a href="https://talk.jekyllrb.com/t/jekyll-theme-showcase-share-your-jekyll-themes/">talk.jekyllrb.com/t/jekyll-theme-showcase-share-your-jekyll-themes/</a></li>
+							<li class="smallest"><a href="https://jekyllrb.com/docs/themes/">jekyllrb.com/docs/themes/</a></li>
 						</ul>
 
+
+						<div class="">
+							<p class="smaller">(outside container)</p>
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								touch Gemfile
+							</code></pre>
+						</div>
+						<div class="">
+							<pre class=""><code data-trim data-noescape class="editor">
+                        ...
+                        # gem "minima", "~> 2.0"
+                        gem "jekyll-theme-midnight"
+                        ...
+							</code></pre>
+						</div>
+						<div class="">
+							<pre class=""><code data-trim data-noescape class="language-shell">
+								touch _config.yml
+							</code></pre>
+						</div>
+						<div class="">
+							<pre class=""><code data-trim data-noescape class="editor">
+                        ...
+                        # theme: minima
+                        theme: jekyll-theme-minimal
+                        ...
+							</code></pre>
+						</div>
+                  <p class="smaller">Restart docker compose</p>
 
 						<aside class="notes">
 							<ul>
@@ -452,13 +476,30 @@
 
 						<h2 class="smaller">Jekyll</h2>
 
+						<h4 class="">Themes</h4>
+
+                  <img src="img/jekyll-theme.png" width="600" alt="new theme">
+
+						<aside class="notes">
+							<ul>
+								<li>Some as themes are aimed at blogs, other at websites, portfolio</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smaller">Jekyll</h2>
+
 
 						<h4 class="">Draft</h4>
 
 						<div class="">
 							<p class="smaller">(outside container)</p>
 							<pre class=""><code data-trim data-noescape class="language-shell">
-								touch -p _drafts/my-first-post.md
+								mkdir _drafts
+								touch _drafts/my-first-post.md
 							</code></pre>
 						</div>
 						<div class="fragment">
@@ -481,7 +522,8 @@
 						</div>
 						<div class="fragment">
 							<pre class=""><code data-trim data-noescape class="language-bash">
-								gh repo create <em>myblog</em>
+                        gh repo create <em>myblog</em>
+                        git push
 							</code></pre>
 						</div>
 
@@ -493,6 +535,11 @@
 								<li>Public repository for now</li>
 							</ul>
 						</aside>
+
+					</section>
+					<section data-auto-animate data-transition="convex" >
+
+                  <img src="img/hyde.jpg" width="600" alt="hyde">
 
 					</section>
 				</section>
@@ -1294,6 +1341,8 @@
 							</code></pre>
 						</div>
 
+                  <img class="fragment" src="https://media.giphy.com/media/6heBQSjt2IoA8/source.gif" alt="typing">
+
 						<aside class="notes">
 							<ul>
 								<li>Like all the other tools...</li>
@@ -1411,6 +1460,19 @@
 					</section>
 
 					<section data-auto-animate>
+						<h2>Secrets</h2>
+
+                  <img class="" src="https://media.giphy.com/media/3oKIP7vCPcUz3RNMgU/source.gif" alt="hush">
+
+						<aside class="notes">
+							<ul>
+								<li>You don't want clear text secrets in Git</li>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
 
                   <h2 class="smallest">Secrets</h2>
 
@@ -1419,8 +1481,9 @@
                   <ul>
                      <li>Manual Kubernetes secrets</li>
                      <li>
-                        Mozilla's SOPS
+                        Mozilla SOPS
                      </li>
+                     <li>Vault</li>
                   </ul>
 
 						<aside class="notes">

@@ -68,7 +68,7 @@ Build and run Node app in Docker:
 
 ```
 docker build -t flurdy/blog-k8s-flux .
-docker compose up
+docker-compose up
 ```
 
 ## Presentation software
