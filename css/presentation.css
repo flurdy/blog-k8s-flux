@@ -72,3 +72,7 @@ pre code em {
 pre code em.red {
    color: #ffaaaa;
 }
+.darker a,
+.darker a:visited {
+   color: white;
+}

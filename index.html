@@ -123,7 +123,7 @@
 
 					</section>
 
-					<section data-auto-animate data-transition="convex">
+					<section dddata-auto-animate data-transition="convex">
 
 						<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
 
@@ -152,7 +152,7 @@
 				</section>
 
 				<section data-transition="convex" data-background="rgb(88, 33, 55)">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2>Blog</h2>
 
@@ -303,7 +303,7 @@
 							<p class="smaller">Create container</p>
 							<pre class=""><code data-trim data-noescape class="language-shell">
 								docker run --rm --volume="$PWD:/srv/jekyll" \
-								-it jekyll/jekyll:4.2.0 /bin/bash
+								-it jekyll/jekyll:3.8.6 /bin/bash
 							</code></pre>
 						</div>
 						<div class="fragment">
@@ -319,12 +319,14 @@
 							<pre class=""><code data-trim data-noescape class="language-shell">
 								cd <em class="custom">myblog</em>
 								git init
-								git commit -am "Initial"
+								git add .
+								git commit -m "Initial"
 							</code></pre>
 						</div>
 
 						<aside class="notes">
 							<ul>
+                        <li>Version 4.2.0 didn't work</li>
 								<li>$PWD works in bash not in fish</li>
 								<li>Using bash inside container</li>
 								<li>myblog is whatever you decide</li>
@@ -342,7 +344,7 @@
 							<p class="smaller">exposing port 4000</>
 							<pre class=""><code data-trim data-noescape class="language-shell">
 								docker run --rm --volume="$PWD:/srv/jekyll" \
-								-p 4000:4000 -it jekyll/jekyll:4.2.0 /bin/bash
+								-p 4000:4000 -it jekyll/jekyll:3.8.6 /bin/bash
 							</code></pre>
 						</div>
 						<div class="fragment">
@@ -394,7 +396,7 @@
 
 							services:
 							jekyll:
-							image: jekyll/jekyll:4.2.0
+							image: jekyll/jekyll:3.8.6
 							container_name: <em class="custom">myblog</em>
 							environment:
 							- JEKYLL_ENV=docker
@@ -496,7 +498,7 @@
 				</section>
 
 				<section data-transition="convex" data-background="rgb(55, 44, 33)">
-					<section data-auto-animate data-transition="convex" >
+					<section xdata-auto-animate data-transition="convex" >
 
 						<h2>CI Build</h2>
 
@@ -799,7 +801,7 @@
 				</section>
 
 				<section data-transition="convex" data-background="rgb(66, 66, 22)">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2>Docker Container Registry</h2>
 
@@ -942,11 +944,22 @@
 				</section>
 
 				<section data-transition="convex" data-background="rgb(33, 44, 55)">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2>Kubernetes</h2>
 
-						<p class="smaller fragment"><a href="https://kubernetes.io/">kubernetes.io</a></p>
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+
+					</section>
+
+					<section data-auto-animate>
+
+						<h2>Kubernetes</h2>
+
+						<p class="smaller"><a href="https://kubernetes.io/">kubernetes.io</a></p>
 
 						<aside class="notes">
 							<ul>
@@ -1125,12 +1138,23 @@
 									</li>
 								</ul>
 							</li>
+							<li class="fragment">
+								Test <em>kubectx</em> current cluster with
+								<ul>
+									<li>
+										<pre class=""><code data-trim data-noescape class="language-bash">
+											kubectx
+										</code></pre>
+									</li>
+								</ul>
+							</li>
 						</ol>
 
 
 						<aside class="notes">
 							<ul>
 								<li>Something UUID like:</li>
+                        <li>kubctx aliases</li>
 							</ul>
 						</aside>
 
@@ -1138,7 +1162,7 @@
 				</section>
 
 				<section data-transition="convex" data-background="rgb(75, 55, 75)">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
                   <img src="img/fork.png" width="400" alt="road fork">
 
@@ -1160,7 +1184,7 @@
 				</section>
 
 				<section data-transition="convex" data-background="rgb(33, 66, 33)">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2>GitOps</h2>
 
@@ -1374,7 +1398,7 @@
             </section>
 
 				<section data-transition="convex" data-background="rgb(11, 11, 11">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2>Secrets</h2>
 
@@ -1506,10 +1530,19 @@
             </section>
 
 				<section data-transition="convex" data-background="rgb(75, 75, 11">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2 class="">Container Registry</h2>
-						<h2 class="fragment">Part Deux</h2>
+
+						<aside class="notes">
+							<ul>
+							</ul>
+						</aside>
+					</section>
+					<section data-auto-animate>
+
+						<h2 class="">Container Registry</h2>
+						<h2 class="">Part Deux</h2>
 
 						<aside class="notes">
 							<ul>
@@ -1586,7 +1619,7 @@
             </section>
 
 				<section data-transition="convex" data-background="rgb(75, 11, 75">
-					<section data-auto-animate data-transition="convex">
+					<section xdata-auto-animate data-transition="convex">
 
 						<h2 class="">Deploy Blog</h2>
 
@@ -1791,7 +1824,7 @@
             </section>
 
             <section data-transition="convex" data-background="rgb(160, 130, 0">
-               <section data-auto-animate data-transition="convex">
+               <section xdata-auto-animate data-transition="convex">
 
                   <h2 class="">Ingress</h2>
 
@@ -1961,7 +1994,7 @@
             </section>
 
             <section data-transition="convex" data-background="rgb(0, 100, 128">
-               <section data-auto-animate data-transition="convex">
+               <section xdata-auto-animate data-transition="convex">
 
                   <h2 class="">Image update</h2>
 
@@ -2122,7 +2155,7 @@
             </section>
 
             <section data-transition="convex" data-background="rgb(150, 0, 100">
-               <section data-auto-animate data-transition="convex">
+               <section xdata-auto-animate data-transition="convex">
 
                   <h2>Oven ready</h2>
 
@@ -2137,16 +2170,15 @@
                   <h2 class="smallest">Oven ready</h2>
 
                   <ul>
-                     <li class="fragment">Soon</li>
-                     <li class="fragment">Flux v2: <a href="https://github.com/flurdy/doubledragon">github.com/flurdy/doubledragon</a> </li>
-                     <li class="fragment">Maybe:
+                     <li class="fragment">Flux v1: <a href="https://github.com/flurdy/lemmings">github.com/flurdy/lemmings</a> </li>
+                     <li class="fragment">
+                        Soon: Flux v2: <a href="https://github.com/flurdy/doubledragon">github.com/flurdy/doubledragon</a>
                         <ul>
                            <li>cert-manager</li>
                            <li>Kustomize</li>
-                           <li>Istio/Flagger</li>
+                           <li>Istio/Flagger?</li>
                         </ul>
                      </li>
-                     <li class="fragment">Flux v1: <a href="https://github.com/flurdy/lemmings">github.com/flurdy/lemmings</a> </li>
                   </ul>
 
 
@@ -2163,7 +2195,7 @@
 
                   <h2>The end</h2>
 
-                  <ul class="fragment">
+                  <ul class="fragment darker">
 							<li class="smaller">
 									<a href="https://github.com/flurdy/blog-k8s-flux">github.com/flurdy/blog-k8s-flux</a>
 							</li>
