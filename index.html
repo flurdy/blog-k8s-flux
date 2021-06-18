@@ -16,15 +16,15 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section data-auto-animate data-transition="convex" data-background="rgb(33, 44, 33)">
 
-					<h2>Blog on K8s with Flux</h2>
+				<section data-transition="convex" data-background="rgb(33, 44, 33)">
+               <section data-auto-animate data-transition="convex"">
 
-					<p class="righty smaller"><a href="https://twitter.com/flurdy">@flurdy</a></p>
+                  <h2>Blog on K8s with Flux</h2>
 
-				</section>
+                  <p class="righty smaller"><a href="https://twitter.com/flurdy">@flurdy</a></p>
 
-				<section data-background="rgb(33, 44, 33)">
+               </section>
 
 					<section data-auto-animate>
 
@@ -104,14 +104,18 @@
 							<li>CI build</li>
 							<li>Docker Container Registry</li>
 							<li>Kubernetes</li>
-							<li>Gitops</li>
+                     <li><img src="img/fork.png" width="60" alt="road fork"></li>
+							<li>GitOps / Flux </li>
 							<li>Secrets</li>
 							<li>Container Registry II</li>
-							<li>Blog via Flux</li>
+							<li>Deploy Blog</li>
+							<li>Ingress</li>
+							<li>Image update</li>
 						</ol>
 
 						<aside class="notes">
 							<ul>
+                        li
 							</ul>
 						</aside>
 
@@ -1461,6 +1465,11 @@
                        --crds=CreateReplace
 						</code></pre>
 
+						<pre><code data-trim data-noescape class="language-bash">
+                     git add sealed-secrets-source ???
+                     git add sealed-secrets-release ???
+						</code></pre>
+
 						<aside class="notes">
 							<ul>
 							</ul>
@@ -1475,16 +1484,18 @@
                   <h4>Public key</h4>
 
 						<pre><code data-trim data-noescape class="language-bash">
-                     mkdir -p clusters/<em>doubledragon-prod</em>/secrets
+                     cd clusters/<em>doubledragon-prod</em>
+                     mkdir secrets
                      kubeseal --fetch-cert \
                        --controller-name=sealed-secrets \
                        --controller-namespace=flux-system \
-                       > clusters/<em>doubledragon-prod</em>/secrets/pub-sealed-secrets.pem
+                       > secrets/pub-sealed-secrets.pem
+                     git add secrets/pub-sealed-secrets.pem
 						</code></pre>
 
 						<aside class="notes">
 							<ul>
-                        <li>Will use this later for registry auth</li>
+                        <li>Will use this next for registry auth</li>
 							</ul>
 						</aside>
 
@@ -1549,15 +1560,18 @@
                      rm registry/<em>quay-clear.yml</em>
 						</code></pre>
 
-                  <p class="smaller">Verify</p>
+                  <div class="fragment">
 
-						<pre><code data-trim data-noescape class="language-bash">
-                     git commit -m "registry added"
-                     git push
-						</code></pre>
-						<pre><code data-trim data-noescape class="language-bash">
-                     kubectl get secret,sealedsecret
-						</code></pre>
+                     <p class="smaller">Verify</p>
+
+                     <pre><code data-trim data-noescape class="language-bash">
+                        git commit -m "registry added"
+                        git push
+                     </code></pre>
+                     <pre><code data-trim data-noescape class="language-bash">
+                        kubectl get secret,sealedsecret
+						   </code></pre>
+                 </div>
 
 						<aside class="notes">
 							<ul>
@@ -1571,7 +1585,7 @@
 				<section data-transition="convex" data-background="rgb(75, 11, 75">
 					<section data-auto-animate data-transition="convex">
 
-						<h2 class="">Blog via Flux</h2>
+						<h2 class="">Deploy Blog</h2>
 
 						<aside class="notes">
 							<ul>
@@ -1583,13 +1597,9 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog via Flux</h2>
+						<h2 class="smallest">Deploy Blog</h2>
 
                   <ul>
-                     <li>Namespace</li>
-                     <li>Deployment</li>
-                     <li>Service</li>
-                     <li>Ingress ???</li>
                      <li><strike>Kustomize</strike></li>
                      <li><strike>GitRepository</strike></li>
                      <li><strike>Certificate</strike></li>
@@ -1606,7 +1616,7 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog via Flux</h2>
+						<h2 class="smallest">Deploy Blog</h2>
 
                   <h4>Create Namespace</h4>
 
@@ -1641,7 +1651,7 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog via Flux</h2>
+						<h2 class="smallest">Deploy Blog</h2>
 
                   <h4>Create Deployment</h4>
 
@@ -1684,11 +1694,6 @@
                   <div class="fragment">
                      <pre><code data-trim data-noescape class="language-bash">
                         git add <em>myblog</em>/deployment.yml
-                        git commit -m "Added <em>myblog</em> deployment"
-                        git push
-                     </code></pre>
-                     <pre><code data-trim data-noescape class="language-bash">
-                        watch kubectl get deployment
                      </code></pre>
                   </div>
 
@@ -1696,13 +1701,14 @@
 							<ul>
                         <li>Check in quay what the current semver version is</li>
                         <li>After the initial deploy this will be automated</li>
+								<li>Instead of myblog you might have myblog.example.com</li>
 							</ul>
 						</aside>
 					</section>
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog via Flux</h2>
+						<h2 class="smallest">Deploy Blog</h2>
 
                   <h4>Create Service</h4>
 
@@ -1739,53 +1745,9 @@
 						</aside>
 					</section>
 
-               <!--
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog via Flux</h2>
-
-                  <h4>Create Ingress</h4>
-
-                  <div class="fragment">
-                     <pre><code data-trim data-noescape class="language-bash">
-                        touch <em>myblog</em>/ingress.yml
-                     </code></pre>
-
-                     <div class="smaller">
-                        <pre><code data-trim data-noescape class="language-yaml editor">
-                           apiVersion: extensions/v1beta1
-                           kind: Ingress
-                           metadata:
-                             name: <em>myblog</em>-ingress
-                             annotations:
-                               kubernetes.io/ingress.class: nginx
-                           spec:
-                             rules:
-                             - host: <em>myblog.example.com</em>
-                               http:
-                                 paths:
-                                 - backend:
-                                     serviceName: <em>myblog</em>-service
-                                     servicePort: 80
-
-                        </code></pre>
-                     </div>
-
-                     <pre><code data-trim data-noescape class="language-bash">
-                        # git add <em>myblog</em>/ingress.yml # not yet
-                     </code></pre>
-                  </div>
-
-						<aside class="notes">
-							<ul>
-							</ul>
-						</aside>
-					</section>
-            -->
-
-					<section data-auto-animate>
-
-						<h4 class="smallest">Blog via Flux</h4>
+						<h4 class="smallest">Deploy Blog</h4>
 
                   <p class="smaller">Monitor rollout</p>
 
@@ -1822,85 +1784,181 @@
 							</ul>
 						</aside>
 					</section>
-
-               <!--
-					<section data-auto-animate>
-
-                  <p class="smaller">Create a <em>GitRepository</em> manifest</p>
-
-						<pre><code data-trim data-noescape class="language-bash">
-                     flux create source git <em>myblog</em> \
-                       --url=https://github.com/$GITHUB_USER/<em>myblog</em> \
-                       --branch=master \
-                       --interval=30s \
-                       --export > ./clusters/<em>doubledragon-01</em>/apps/<em>myblog</em>-source.yaml
-						</code></pre>
-                  <div class="smaller">
-                     <pre><code data-trim data-noescape class="language-kubernetes editor editorgreen">
-                        apiVersion: source.toolkit.fluxcd.io/v1beta1
-                        kind: GitRepository
-                        metadata:
-                          name: <em>myblog</em>
-                          namespace: flux-system
-                        spec:
-                          interval: 30s
-                          ref:
-                            branch: master
-                          url: https://github.com/<em>yourusername</em>/<em>myblog</em>
-                     </code></pre>
-                  </div>
-						<aside class="notes">
-							<ul>
-								<li>Instead of myblog you might have myblog.example.com</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section data-auto-animate>
-
-						<h4 class="smallest">Blog via Flux</h4>
-
-						<pre><code data-trim data-noescape class="language-bash">
-                     tree
-						</code></pre>
-                  <div class="smaller">
-                     <pre><code data-trim data-noescape class="language-bash editor editorgreen">
-                        <em>fleet-doubledragon</em>
-                        └── clusters/
-                            └── <em>doubledragon-01</em>/
-                                ├── flux-system/
-                                │   ├── gotk-components.yaml
-                                │   ├── gotk-sync.yaml
-                                │   └── kustomization.yaml
-                                └── apps
-                                    ├── <em>myblog</em>-kustomization.yaml
-                                    └── <em>myblog</em>-source.yaml
-                     </code></pre>
-                  </div>
-
-						<pre><code data-trim data-noescape class="language-bash">
-                     git add -A && git commit -m "Added <em>myblog</em> GitRepository"
-                     git push
-						</code></pre>
-
-
-						<aside class="notes">
-							<ul>
-								<li>Very different file structure to v1</li>
-							</ul>
-						</aside>
-					</section>
-
-            -->
             </section>
-<!--
 
-						<ul>
-							<li>Add registry secret</li>
-							<li>Add certificate</li>
-							<li>Add ingress</li>
-						</ul>
-               -->
+            <section data-transition="convex" data-background="rgb(160, 130, 0">
+               <section data-auto-animate data-transition="convex">
+
+                  <h2 class="">Ingress</h2>
+
+                  <aside class="notes">
+                     <ul>
+                        <li></li>
+                     </ul>
+                  </aside>
+
+               </section>
+
+               <section data-auto-animate>
+
+                  <h2 class="smallest">Ingress</h2>
+
+                  <h2>Nginx</h2>
+
+                  <aside class="notes">
+                     <ul>
+                        <li>Config map</li>
+                     </ul>
+                  </aside>
+               </section>
+
+               <section data-auto-animate>
+
+                  <h2 class="smallest">Ingress</h2>
+
+                  <h2 class="smallest">Nginx</h2>
+
+						<pre><code data-trim data-noescape class="language-bash">
+                     flux create source helm nginx \
+                       --url https://kubernetes-charts.storage.googleapis.com
+                     flux create helmrelease --chart <em>my-nginx</em> \
+                       --source HelmRepository/nginx \
+                       --chart-version <em>1.26.1</em> \
+                       --namespace nginx
+						</code></pre>
+
+                  <aside class="notes">
+                     <ul>
+                        <li>Should create and add to git a repo and release</li>
+                     </ul>
+                  </aside>
+               </section>
+
+					<section data-auto-animate>
+
+                  <h2 class="smallest">Ingress</h2>
+
+						<h2 class="smallest">Blog Ingress</h2>
+
+                  <p class="smaller">Create Ingress</p>
+
+                  <div class="fragment">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        touch clusters/<em>doubledragon-prod</em>/<em>arcade</em>/<em>myblog</em>/ingress.yml
+                     </code></pre>
+
+                     <div class="smaller">
+                        <pre><code data-trim data-noescape class="language-yaml editor" data-line-numbers="4|9|11|13">
+                           apiVersion: extensions/v1beta1
+                           kind: Ingress
+                           metadata:
+                             name: <em>myblog</em>-ingress
+                             annotations:
+                               kubernetes.io/ingress.class: nginx
+                           spec:
+                             rules:
+                             - host: <em>myblog.example.com</em>
+                               http:
+                                 paths:
+                                 - backend:
+                                     serviceName: <em>myblog</em>-service
+                                     servicePort: 80
+
+                        </code></pre>
+                     </div>
+
+                     <pre><code data-trim data-noescape class="language-bash">
+                        git add clusters/<em>doubledragon-prod</em>/<em>arcade</em>/<em>myblog</em>/ingress.yml
+                     </code></pre>
+                  </div>
+
+						<aside class="notes">
+							<ul>
+                        <li>catchall</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-auto-animate>
+
+						<h2 class="smallest">Blog Ingress</h2>
+
+                  <p class="smaller">Publish</p>
+
+                  <div class="fragment">
+                     <pre><code data-trim data-noescape class="language-bash">
+                        git commit -m "<em>myblog</em> ingress"
+                        git push
+                     </code></pre>
+
+                     <div class="fragment">
+                        <p class="smaller">Monitor</p>
+
+                        <pre><code data-trim data-noescape class="language-bash">
+                        watch kubectl get ingress
+                        </code></pre>
+
+                        <div class="smaller">
+                           <pre><code data-trim data-noescape class="language-bash editor">
+                              NAME             HOSTS               ADDRESS  PORTS  AGE
+                              <em>myblog</em>-ingress   <em>myblog.example.com</em>  <em>5.4.3.2</em>  80     3s
+                           </code></pre>
+                        </div>
+                     </div>
+
+                     <div class="fragment">
+
+                        <p class="smaller">Test</p>
+
+                        <div class="smaller">
+                           <pre><code data-trim data-noescape class="language-bash">
+                              curl -H "Host: <em>myblog.example.com</em>" \
+                                 --resolve <em>hello.example.com</em>:80:<em>5.4.3.2</em> \
+                                 http://<em>myblog.example.com</em> | lynx -stdin
+                           </code></pre>
+                        </div>
+                     </div>
+
+                  </div>
+
+						<aside class="notes">
+							<ul>
+                        <li>catchall</li>
+							</ul>
+						</aside>
+               </section>
+            </section>
+
+            <section data-transition="convex" data-background="rgb(0, 100, 128">
+               <section data-auto-animate data-transition="convex">
+
+                  <h2 class="">Image update</h2>
+
+                  <aside class="notes">
+                     <ul>
+                        <li>Threw my toys</li>
+                     </ul>
+                  </aside>
+
+               </section>
+               <section data-auto-animate>
+
+                  <h2 class="smallest">Image update</h2>
+
+                  <ul>
+                     <li></li>
+                  </ul>
+
+                  <aside class="notes">
+                     <ul>
+                        <li>Threw my toys</li>
+                     </ul>
+                  </aside>
+
+               </section>
+
+            </section>
+
 			</div>
 		</div>
 
