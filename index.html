@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-		<title>Blog on K8s with Flux</title>
-
+      <title>Your blog on Kubernetes, with GitOps</title>
+      <meta http-equiv="Keywords" content="kubernetes,blog,gitops,flux,sealed-secrets,ingress,jekyll,circleci,quay,digitalocean">
+      <meta name="description" content="Host your own blog on Kubernetes using gitops with Flux. Built with CircleCI, image hosted with Quay. Kubernetes cluster with DigitalOcean">
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css">
@@ -20,7 +20,7 @@
 				<section data-transition="convex" data-background="rgb(33, 44, 33)">
                <section data-auto-animate data-transition="convex"">
 
-                  <h2>Blog on K8s with Flux</h2>
+                  <h2>Your blog on Kubernetes, with GitOps</h2>
 
                   <p class="righty smaller"><a href="https://twitter.com/flurdy">@flurdy</a></p>
 
@@ -28,13 +28,15 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest afragment afade-out" data-fragment-index="0">Blog on K8s with Flux</h2>
+						<h2 class="smallest afragment afade-out">Your blog on Kubernetes, with GitOps</h2>
 
-						<p class="fragment" data-fragment-index="1">Host your own blog</p>
-						<p class="fragment" data-fragment-index="2">on Kubernetes</p>
-						<p class="fragment" data-fragment-index="3">using gitops with Flux</p>
-						<div class="fragment" data-fragment-index="4">
-                     <img src="img/smallest-container-ship.jpg" alt="tiny boat big container"></>
+						<p class="fragment">Host your own blog</p>
+						<p class="fragment">on Kubernetes</p>
+						<p class="fragment">using gitops with Flux</p>
+
+						<div class="fragment">
+                     <img src="img/smallest-container-ship.jpg" width="400" alt="tiny boat big container">
+                  </div>
 
 						<aside class="notes">
 							<ul>
@@ -46,7 +48,7 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog on K8s with Flux</h2>
+						<h2 class="smallest">Your blog on Kubernetes, with GitOps</h2>
 
 						<ul>
 							<li class="smaller">
@@ -73,7 +75,7 @@
 
 					<section data-auto-animate>
 
-						<h2 class="smallest">Blog on K8s with Flux</h2>
+						<h2 class="smallest">Your blog on Kubernetes, with GitOps</h2>
 
 						<ul>
 							<li>
@@ -96,24 +98,24 @@
 
 					<section data-auto->
 
-						<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
+						<h2 class="smallest">Your blog on Kubernetes, with GitOps</h2>
 
 						<h4>Contents</h4>
 
 						<ol>
-							<li>Introduction</li>
-							<li>Blog</li>
-							<li>CI build</li>
-							<li>Docker Container Registry</li>
-							<li>Kubernetes</li>
-                     <li><img src="img/fork.png" width="60" alt="road fork"></li>
-							<li>GitOps / Flux </li>
-							<li>Secrets</li>
-							<li>Container Registry II</li>
-							<li>Deploy Blog</li>
-							<li>Ingress</li>
-							<li>Image update</li>
-							<li>Oven ready</li>
+							<li class="smaller">Introduction</li>
+							<li class="smaller">Blog</li>
+							<li class="smaller">CI build</li>
+							<li class="smaller">Docker Container Registry</li>
+							<li class="smaller">Kubernetes</li>
+                     <li class="smaller"><img src="img/fork.png" width="60" alt="road fork"></li>
+							<li class="smaller">GitOps / Flux </li>
+							<li class="smaller">Secrets</li>
+							<li class="smaller">Container Registry II</li>
+							<li class="smaller">Deploy Blog</li>
+							<li class="smaller">Ingress</li>
+							<li class="smaller">Image update</li>
+							<li class="smaller">Oven ready</li>
 						</ol>
 
 						<aside class="notes">
@@ -126,16 +128,16 @@
 
 					<section dddata-auto-animate data-transition="convex">
 
-						<h2 class="smallest" data-fragment-index="0">Blog on K8s with Flux</h2>
+						<h2 class="smallest">Your blog on Kubernetes, with GitOps</h2>
 
 						<h4>Prior Art</h4>
 
 						<ul>
-							<li class="smaller"><a href="https://flurdy.com/docs/jekyll/">flurdy.com/docs/jekyll/</a></li>
-							<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-101.html">flurdy.com/docs/kubernetes/kubernetes-101.html</a></li>
-							<li class="smaller"><a href="https://flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html">flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html</a></li>
-							<li class="smaller"><a href="vahttp://flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html">flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html</a></li>
-                     <li class="smaller"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
+							<li class="smallest"><a href="https://flurdy.com/docs/jekyll/">flurdy.com/docs/jekyll/</a></li>
+							<li class="smallest"><a href="https://flurdy.com/docs/kubernetes/kubernetes-101.html">flurdy.com/docs/kubernetes/kubernetes-101.html</a></li>
+							<li class="smallest"><a href="https://flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html">flurdy.com/docs/kubernetes/kubernetes-ingress-tls-helm.html</a></li>
+							<li class="smallest"><a href="vahttp://flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html">flurdy.com/docs/kubernetes/registry/kubernetes-docker-registry.html</a></li>
+                     <li class="smallest"><a href="https://github.com/flurdy/lemmings/">github.com/flurdy/lemmings/</a></li>
 						</ul>
 
 						<aside class="notes">
@@ -375,7 +377,7 @@
 
 						<h2 class="">Jekyll</h2>
 
-						<img src="img/jekyll-default.png"/>
+						<img src="img/jekyll-default.png" width="600" alt="jekyll default theme"/>
 
 						<aside class="notes">
 							<ul>
@@ -507,7 +509,7 @@
 								touch _drafts/my-first-post.md
 							</code></pre>
 						</div>
-						<div class="fragment">
+						<div class="fragment smaller">
 							<pre class=""><code data-trim data-noescape class="language-markdown editor">
 								## My first blog post
 
@@ -516,7 +518,7 @@
 						</div>
 						<div class="fragment">
 							<pre class=""><code data-trim data-noescape class="language-markdown">
-								open http://localhost:4000/2021/05/18/my-first-post
+								open http://localhost:4000/2021/06/18/my-first-post
 							</code></pre>
 						</div>
 						<div class="fragment">
@@ -654,7 +656,7 @@
 							</code></pre>
 						</div>
 
-						<div class="fragment">
+						<div class="fragment smaller">
 							<pre class=""><code data-trim data-noescape class="language-docker editor">
 								FROM nginx:1.15-alpine
 
@@ -1400,11 +1402,11 @@
 							</ul>
 							<pre><code data-trim data-noescape class="language-bash">
 								flux bootstrap github \
-								--owner=$GITHUB_USER \
-								--repository=<em>fleet-doubledragon</em> \
-								--branch=main \
-								--path=./clusters/<em>doubledragon-prod</em> \
-								--personal
+								  --owner=$GITHUB_USER \
+								  --repository=<em>fleet-doubledragon</em> \
+								  --branch=main \
+								  --path=./clusters/<em>doubledragon-prod</em> \
+								  --personal
 							</code></pre>
 						</div>
 
@@ -1788,8 +1790,8 @@
                         kind: Deployment
                         metadata:
                         name: <em>myblog</em>-deployment
-                        annotations:
-                           fluxcd.io/automated: "true"
+                        # annotations:
+                        #   fluxcd.io/automated: "true"
                         spec:
                         selector:
                            matchLabels:
@@ -1956,7 +1958,7 @@
                   <aside class="notes">
                      <ul>
                         <li>Maintained by Kubernetes team</li>
-                        <li>Config map</li>
+                        <li>Config map nginx config</li>
                      </ul>
                   </aside>
                </section>
@@ -2267,7 +2269,7 @@
                   <h2 class="smallest">Oven ready</h2>
 
                   <ul>
-                     <li class="fragment">Flux v1: <a href="https://github.com/flurdy/lemmings">github.com/flurdy/lemmings</a> </li>
+                     <li class="">Flux v1: <a href="https://github.com/flurdy/lemmings">github.com/flurdy/lemmings</a> </li>
                      <li class="fragment">
                         Soon: Flux v2: <a href="https://github.com/flurdy/doubledragon">github.com/flurdy/doubledragon</a>
                         <ul>
@@ -2281,7 +2283,7 @@
 
                   <aside class="notes">
                      <ul>
-                        <li></li>
+                        <li>Flagger later on</li>
                      </ul>
                   </aside>
               </section>
